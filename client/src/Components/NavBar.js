@@ -46,6 +46,9 @@ function NavBar() {
             <li>
               <a href="/reviews">Reviews</a>
             </li>
+            <li>
+                <a href="/login">Log In</a>
+            </li>
           </ul>
         </div>
       </nav>
