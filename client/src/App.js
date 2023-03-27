@@ -8,6 +8,7 @@ import { useState, useEffect } from 'react';
 function App() {
   const [ trainers, setTrainers ] = useState([])
 
+
   useEffect(() => {
     fetch("http://localhost:3000/trainers")
     .then((response) => response.json())
@@ -15,6 +16,8 @@ function App() {
       setTrainers(trainerData)
     })
   }, [])
+
+
 
   return (
     <div className="App">
