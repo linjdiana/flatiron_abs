@@ -9,15 +9,15 @@ with app.app_context():
 
     trainers = []
 
-    t1 = Trainer(name='Topher', image='https://www.shutterstock.com/image-photo/personal-trainer-arms-crossed-gym-260nw-493318507.jpg', bio='Cool dude')
+    t1 = Trainer(name='Topher', image='https://github.com/linjdiana/flatiron_abs/blob/topher/images/chad.jpeg?raw=true', bio='Cool dude')
 
     trainers.append(t1)
 
-    t2 = Trainer(name='Diana', image='https://photobucket.com/u/TopherL2014/p/be4ad1ae-10fc-446d-9c85-a9311c6b6a52', bio='Cool chick')
+    t2 = Trainer(name='Diana', image='https://github.com/linjdiana/flatiron_abs/blob/topher/images/wonderwoman.jpg?raw=true', bio='Cool chick')
 
     trainers.append(t2)
 
-    t3 = Trainer(name='Brett', image='https://imgur.com/O1u3I46', bio='The coolest')
+    t3 = Trainer(name='Brett', image='https://github.com/linjdiana/flatiron_abs/blob/topher/images/We_Can_Do_It__qhtlbj.jpg?raw=true', bio='The coolest')
 
     trainers.append(t3)
 
