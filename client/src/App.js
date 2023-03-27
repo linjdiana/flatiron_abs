@@ -9,7 +9,7 @@ function App() {
   const [ trainers, setTrainers ] = useState([])
 
   useEffect(() => {
-    fetch("http://localhost:3000/trainers")
+    fetch("/trainers")
     .then((response) => response.json())
     .then((trainerData) => {
       setTrainers(trainerData)

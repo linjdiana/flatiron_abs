@@ -9,11 +9,11 @@ with app.app_context():
 
     trainers = []
 
-    t1 = Trainer(name='Topher', image='https://imgur.com/a/mFpmk9W', bio='Cool dude')
+    t1 = Trainer(name='Topher', image='https://www.shutterstock.com/image-photo/personal-trainer-arms-crossed-gym-260nw-493318507.jpg', bio='Cool dude')
 
     trainers.append(t1)
 
-    t2 = Trainer(name='Diana', image='https://imgur.com/q3Pbe4s', bio='Cool chick')
+    t2 = Trainer(name='Diana', image='https://photobucket.com/u/TopherL2014/p/be4ad1ae-10fc-446d-9c85-a9311c6b6a52', bio='Cool chick')
 
     trainers.append(t2)
 
