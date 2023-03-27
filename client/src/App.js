@@ -1,9 +1,10 @@
 import './App.css';
-import styled from 'styled-components'
+import {createGlobalStyle} from 'styled-components';
 import {Switch, Route} from "react-router-dom";
 import TrainerContainer from './Components/TrainerContainer';
-import Login from './Components/Login';
+import Authentication from './Components/Authentication';
 import Home from "./Components/Home";
+import NavBar from "./Components/NavBar";
 import { useState, useEffect } from 'react';
 
 function App() {
@@ -26,13 +27,14 @@ function App() {
     });
   }, []);
 
-  function handleLogin(user) {
-    setUser(user);
-  }
-
-  function handleLogout() {
-    setUser(null);
-  }
+  const updateUser = (user) => setUser(user)
+  if(!user) return (
+    <>
+      <GlobalStyle />
+      <NavBar/>
+      <Authentication updateUser={updateUser}/>
+    </>
+  )
 
   return (
     <div className="App">
@@ -52,8 +54,8 @@ function App() {
         <Route path="/trainers">
           <TrainerContainer trainers={trainers} />
         </Route>
-        <Route exact path="/login">
-          <Login onLogin={handleLogin} />
+        <Route exact path='/authentication'>
+          <Authentication updateUser={updateUser}/>
         </Route>
         <Route exact path="/home">
           <Home />
@@ -68,3 +70,10 @@ function App() {
 }
 
 export default App;
+
+const GlobalStyle = createGlobalStyle`
+    body{
+      background-color: yellow; 
+      color:black;
+    }
+    `
