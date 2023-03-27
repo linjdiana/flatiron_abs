@@ -1,6 +1,7 @@
 from flask import Flask, request, make_response, jsonify
 from flask_migrate import Migrate
 from flask_cors import CORS
+from flask_restful import Api, Resource
 
 from models import db, Trainer
 app = Flask(__name__)
@@ -15,21 +16,22 @@ app.json.compact = False
 migrate = Migrate(app, db)
 db.init_app(app)
 
-# api = Api(app)
+api = Api(app)
 
-@app.route('/')
-def index():
-    return '<h1>hi</h1>'
+class Index(Resource):
+    def get(self):
+        return '<h1>hi</h1>'
+api.add_resource(Index, '/')
 
-# @app.route('/trainers', methods=['GET'])
-# def movies():
-#     response_dict = {
-#         "text": "Trainers will go here"
-#     }
-
-#     return make_response(jsonify(response_dict), 200)
-
-
+class Trainers(Resource):
+    def get(self):
+        trainer_list = [t.to_dict() for t in Trainer.query.all()]
+        response = make_response(
+            trainer_list,
+            200
+        )
+        return response
+api.add_resource(Trainers, '/trainers')
 
 if __name__ == '__main__':
     app.run(port=5555)

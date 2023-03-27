@@ -8,3 +8,5 @@ class Trainer(db.Model, SerializerMixin):
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String)
+    image = db.Column(db.String)
+    bio = db.Column(db.String)
