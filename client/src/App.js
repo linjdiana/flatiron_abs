@@ -3,10 +3,12 @@ import NavBar from './Components/NavBar'
 import styled from 'styled-components'
 import {Switch, Route} from "react-router-dom";
 import TrainerContainer from './Components/TrainerContainer';
+import Calendar from './Components/Calendar'
 import { useState, useEffect } from 'react';
 
 function App() {
   const [ trainers, setTrainers ] = useState([])
+  const [ workouts, setWorkouts ] = useState([])
 
 
   useEffect(() => {
@@ -14,6 +16,14 @@ function App() {
     .then((response) => response.json())
     .then((trainerData) => {
       setTrainers(trainerData)
+    })
+  }, [])
+
+  useEffect(() => {
+    fetch("http://localhost:3000/workouts")
+    .then((response) => response.json())
+    .then((workoutData) => {
+      setWorkouts(workoutData)
     })
   }, [])
 
@@ -37,6 +47,9 @@ function App() {
       <Switch>
         <Route path="/trainers">
           <TrainerContainer trainers={trainers} />
+        </Route>
+        <Route path="/workouts" >
+          <Calendar workouts={workouts} />
         </Route>
       </Switch>
       </div>

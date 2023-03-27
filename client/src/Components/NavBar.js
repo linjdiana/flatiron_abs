@@ -39,7 +39,10 @@ function NavBar() {
         >
           <ul>
             <li>
-              <a href="/calendar">Calendar</a>
+              {/* <a href="/calendar">Calendar</a> */}
+              <NavLink exact to="/workouts">
+                Calendar
+              </NavLink>
             </li>
             <li>
               {/* <a href="/trainers">Trainers</a> */}
