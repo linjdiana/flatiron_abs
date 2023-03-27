@@ -2,11 +2,22 @@ import Reviews from './Reviews'
 import Calendar from './Calendar'
 import TrainerContainer from './TrainerContainer'
 import { useState } from 'react';
-import { NavLink } from "react-router-dom";
+import { NavLink, useHistory } from "react-router-dom";
 
-function NavBar() {
+function NavBar({updateUser}) {
     const [isNavExpanded, setIsNavExpanded] = useState(false);
-  
+    const history = useHistory();
+    const handleLogout = () => {
+      fetch("/logout", {
+        method: "DELETE",
+      }).then(res => {
+        if(res.ok){
+            updateUser(null)
+            history.push('/authentication')
+        }
+      })
+   }
+
     return (
       <nav className="navigation">
         <a href="/" className="brand-name">
@@ -48,11 +59,12 @@ function NavBar() {
               </NavLink>
             </li>
             <li>
-              <a href="/reviews">Reviews</a>
+              <NavLink exact to="/reviews">Reviews</NavLink>
             </li>
             <li>
-                <a href="/login">Log In</a>
+                <NavLink exact to="/authentication">Log In/Signup</NavLink>
             </li>
+            <li onClick={handleLogout}> Logout </li>
           </ul>
         </div>
       </nav>

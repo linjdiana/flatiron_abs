@@ -20,12 +20,37 @@ function App() {
   }, [])
 
   useEffect(() => {
-    fetch("/check_session").then((response) => {
-      if (response.ok) {
-        response.json().then((user) => setUser(user));
+    fetchUser()
+  },[])
+  const fetchTrainers = () => (
+    fetch('/trainers')
+    .then(res => res.json())
+    .then(setTrainers)
+  )
+
+  const fetchUser = () => (
+    fetch('/authorized')
+    .then(res => {
+      if(res.ok){
+        res.json()
+        .then(data => {
+          setUser(data)
+          fetchTrainers()
+        })
+      } else {
+        console.log('hi')
+        setUser(null)
       }
-    });
-  }, []);
+    })
+  )
+
+  // useEffect(() => {
+  //   fetch("/check_session").then((response) => {
+  //     if (response.ok) {
+  //       response.json().then((user) => setUser(user));
+  //     }
+  //   });
+  // }, []);
 
   const updateUser = (user) => setUser(user)
   if(!user) return (

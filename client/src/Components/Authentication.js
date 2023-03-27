@@ -5,7 +5,7 @@ import { useFormik } from "formik"
 import * as yup from "yup"
 
 
-function Login({updateUser}) {
+function Authentication({updateUser}) {
   const [signUp, setSignUp] = useState(false)
   const [error, setError] = useState(false)
   const history = useHistory()
@@ -52,8 +52,8 @@ function Login({updateUser}) {
         <h2 style={{color:'red'}}> {formik.errors.name}</h2>
         {error&& <h2 style={{color:'red'}}> {error}</h2>}
         <h2>Please Log in or Sign up!</h2>
-        <h2>{signUp?'Already a member?':'Not a member?'}</h2>
-        <button onClick={handleClick}>{signUp?'Log In!':'Register now!'}</button>
+        <h2>{signUp?'Have an account?':'Not a member yet?'}</h2>
+        <button onClick={handleClick}>{signUp?'Log In':'Signup'}</button>
         <Form onSubmit={formik.handleSubmit}>
         <label>
           Username
@@ -78,7 +78,7 @@ function Login({updateUser}) {
     )
 }
 
-export default Login
+export default Authentication
 
 export const Form = styled.form`
 display:flex;
