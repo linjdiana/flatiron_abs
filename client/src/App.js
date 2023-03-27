@@ -1,13 +1,14 @@
 import './App.css';
-import NavBar from './Components/NavBar'
 import styled from 'styled-components'
 import {Switch, Route} from "react-router-dom";
 import TrainerContainer from './Components/TrainerContainer';
+import Login from './Components/Login';
+import Home from "./Components/Home";
 import { useState, useEffect } from 'react';
 
 function App() {
   const [ trainers, setTrainers ] = useState([])
-
+  const [user, setUser] = useState(null);
 
   useEffect(() => {
     fetch("http://localhost:3000/trainers")
@@ -17,13 +18,26 @@ function App() {
     })
   }, [])
 
+  useEffect(() => {
+    fetch("/check_session").then((response) => {
+      if (response.ok) {
+        response.json().then((user) => setUser(user));
+      }
+    });
+  }, []);
 
+  function handleLogin(user) {
+    setUser(user);
+  }
+
+  function handleLogout() {
+    setUser(null);
+  }
 
   return (
     <div className="App">
-      <NavBar />
       <div className="container">
-        <article>
+      <article>
           <h1>What is Flat & Iron Abs Gym? </h1>
           Flat & Iron Abs is a gym located in the Bay Area. This is created by three software engineers from the Flatiron School.  
           <a
@@ -38,17 +52,19 @@ function App() {
         <Route path="/trainers">
           <TrainerContainer trainers={trainers} />
         </Route>
+        <Route exact path="/login">
+          <Login onLogin={handleLogin} />
+        </Route>
+        <Route exact path="/home">
+          <Home />
+        </Route>
       </Switch>
+      <Route exact path="/">
+          <Home />
+      </Route>
       </div>
     </div>
   );
 }
 
 export default App;
-
-const Image = styled.img.attrs(() => ({
-  src:'https://images.unsplash.com/photo-1518834107812-67b0b7c58434?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1335&q=80', 
-}))`
-  position: absolute;
-  z-index:-1;
-`
