@@ -1,9 +1,12 @@
 import TrainerCard from './TrainerCard'
 
-function TrainerContainer() {
+function TrainerContainer({ trainers }) {
+  const trainerItems = trainers.map(trainerObj => {
+    return <TrainerCard key={trainers.id} trainerObj={trainerObj} />
+  });
     return (
       <div className="App">
-        <TrainerCard />
+        {trainerItems}
       </div>
     );
   }

@@ -2,6 +2,7 @@ import Reviews from './Reviews'
 import Calendar from './Calendar'
 import TrainerContainer from './TrainerContainer'
 import { useState } from 'react';
+import { NavLink } from "react-router-dom";
 
 function NavBar() {
     const [isNavExpanded, setIsNavExpanded] = useState(false);
@@ -41,7 +42,10 @@ function NavBar() {
               <a href="/calendar">Calendar</a>
             </li>
             <li>
-              <a href="/trainers">Trainers</a>
+              {/* <a href="/trainers">Trainers</a> */}
+              <NavLink exact to="/trainers">
+                Trainers
+              </NavLink>
             </li>
             <li>
               <a href="/reviews">Reviews</a>
