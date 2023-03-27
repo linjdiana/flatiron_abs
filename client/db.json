@@ -1,0 +1,22 @@
+{
+    "trainers": [
+        {
+            "id": 1,
+            "name": "Topher",
+            "image": "https://www.shutterstock.com/image-photo/personal-trainer-arms-crossed-gym-260nw-493318507.jpg",
+            "bio": "Cool Dude"
+        },
+        {
+            "id": 2,
+            "name": "Diana",
+            "image": "https://www.shutterstock.com/image-photo/personal-trainer-arms-crossed-gym-260nw-493318507.jpg",
+            "bio": "Cool Chick"
+        },
+        {
+            "id": 1,
+            "name": "Brett",
+            "image": "https://www.shutterstock.com/image-photo/personal-trainer-arms-crossed-gym-260nw-493318507.jpg",
+            "bio": "The Coolest"
+        }
+    ]
+}

@@ -1,8 +1,21 @@
 import './App.css';
 import NavBar from './Components/NavBar'
 import styled from 'styled-components'
+import {Switch, Route} from "react-router-dom";
+import TrainerContainer from './Components/TrainerContainer';
+import { useState, useEffect } from 'react';
 
 function App() {
+  const [ trainers, setTrainers ] = useState([])
+
+  useEffect(() => {
+    fetch("http://localhost:3000/trainers")
+    .then((response) => response.json())
+    .then((trainerData) => {
+      setTrainers(trainerData)
+    })
+  }, [])
+
   return (
     <div className="App">
       <NavBar />
@@ -18,6 +31,11 @@ function App() {
              Please watch a video tutorial.
           </a>
         </article>
+      <Switch>
+        <Route path="/trainers">
+          <TrainerContainer trainers={trainers} />
+        </Route>
+      </Switch>
       </div>
     </div>
   );
