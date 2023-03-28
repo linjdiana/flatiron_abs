@@ -3,7 +3,8 @@ import NavBar from './Components/NavBar'
 import styled from 'styled-components'
 import {Switch, Route} from "react-router-dom";
 import TrainerContainer from './Components/TrainerContainer';
-import Calendar from './Components/Calendar'
+import Calendar from './Components/Calendar';
+import AddReview from './Components/AddReview';
 import { useState, useEffect } from 'react';
 
 function App() {
@@ -50,6 +51,9 @@ function App() {
         </Route>
         <Route path="/workouts" >
           <Calendar workouts={workouts} />
+        </Route>
+        <Route path="/reviews">
+          <AddReview />
         </Route>
       </Switch>
       </div>

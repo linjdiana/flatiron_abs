@@ -41,5 +41,14 @@
             "name": "Spikeball/no mercy",
             "description": "Takes spikeball way too seriously. Turns it into a contact sport."
         }
+    ],
+    "reviews": [
+        {
+            "id": 1,
+            "user": "This Guy",
+            "workout": "Get Yoked",
+            "rating": 5,
+            "text": "Great class!"
+        }
     ]
 }

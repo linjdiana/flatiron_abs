@@ -51,7 +51,10 @@ function NavBar() {
               </NavLink>
             </li>
             <li>
-              <a href="/reviews">Reviews</a>
+              {/* <a href="/reviews">Reviews</a> */}
+              <NavLink exact to="/reviews">
+                Reviews
+              </NavLink>
             </li>
             <li>
                 <a href="/login">Log In</a>
