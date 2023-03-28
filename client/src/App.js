@@ -2,7 +2,6 @@ import './App.css';
 import {createGlobalStyle} from 'styled-components';
 import {Switch, Route} from "react-router-dom";
 import TrainerContainer from './Components/TrainerContainer';
-import Calendar from './Components/Calendar'
 import Authentication from './Components/Authentication';
 import Home from "./Components/Home";
 import NavBar from "./Components/NavBar";
@@ -44,6 +43,7 @@ function App() {
   return (
     <div className="App">
       <div className="container">
+      <NavBar />
       <Switch>
         <Route exact path='/'>
           <Home />
