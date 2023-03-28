@@ -54,8 +54,8 @@ class Login(Resource):
     def post(self):
         try: 
             user = User.query.filter_by(name=request.get_json()['name']).first()
-            import ipdb
-            ipdb.set_trace()
+            # import ipdb
+            # ipdb.set_trace()
             if user.authenticate(request.get_json()['password']):
                 session['user_id'] = user.id
                 response = make_response(
