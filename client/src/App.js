@@ -2,6 +2,7 @@ import './App.css';
 import {createGlobalStyle} from 'styled-components';
 import {Switch, Route} from "react-router-dom";
 import TrainerContainer from './Components/TrainerContainer';
+import Calendar from './Components/Calendar'
 import Authentication from './Components/Authentication';
 import Home from "./Components/Home";
 import NavBar from "./Components/NavBar";
@@ -23,54 +24,13 @@ function App() {
   }, [])
 
   useEffect(() => {
-    fetch("/workouts")
+    fetch("http://localhost:3000/workouts")
     .then((response) => response.json())
     .then((workoutData) => {
       setWorkouts(workoutData)
     })
   }, [])
 
-  // useEffect(() => {
-  //   fetch("http://localhost:3000/trainers")
-  //   .then((response) => response.json())
-  //   .then((trainerData) => {
-  //     setTrainers(trainerData)
-  //   })
-  // }, [])
-
-  // useEffect(() => {
-  //   fetchUser()
-  //   fetchTrainers()
-  // },[])
-
-  // const fetchTrainers = () => (
-  //   fetch('/trainers')
-  //   .then(res => res.json())
-  //   .then(setTrainers)
-  // )
-
-  // const fetchUser = () => (
-  //   fetch('/authorized')
-  //   .then(res => {
-  //     if(res.ok){
-  //       res.json()
-  //       .then(data => {
-  //         setUser(data)
-  //       })
-  //     } else {
-  //       console.log('hi')
-  //       setUser(null)
-  //     }
-  //   })
-  // )
-
-  // useEffect(() => {
-  //   fetch("/check_session").then((response) => {
-  //     if (response.ok) {
-  //       response.json().then((user) => setUser(user));
-  //     }
-  //   });
-  // }, []);
 
   const updateUser = (user) => setUser(user)
   if(!user) return (
