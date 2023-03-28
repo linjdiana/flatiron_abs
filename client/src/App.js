@@ -1,33 +1,48 @@
 import './App.css';
 import NavBar from './Components/NavBar'
-import Home from './Components/Home'
 import styled from 'styled-components'
 import {Switch, Route} from "react-router-dom";
 import TrainerContainer from './Components/TrainerContainer';
+import Calendar from './Components/Calendar'
 import { useState, useEffect } from 'react';
+import Home from './Components/Home';
 
 function App() {
   const [ trainers, setTrainers ] = useState([])
+  const [ workouts, setWorkouts ] = useState([])
 
 
   useEffect(() => {
-    fetch("http://localhost:3000/trainers")
+    fetch("/trainers")
     .then((response) => response.json())
     .then((trainerData) => {
       setTrainers(trainerData)
     })
   }, [])
 
+  useEffect(() => {
+    fetch("/workouts")
+    .then((response) => response.json())
+    .then((workoutData) => {
+      setWorkouts(workoutData)
+    })
+  }, [])
 
 
- return (
+
+  return (
     <div className="App">
       <NavBar />
-      <Home />
       <div className="container">
       <Switch>
+        <Route path='/'>
+          <Home />
+        </Route>
         <Route path="/trainers">
           <TrainerContainer trainers={trainers} />
+        </Route>
+        <Route path="/workouts" >
+          <Calendar workouts={workouts} />
         </Route>
       </Switch>
       </div>
