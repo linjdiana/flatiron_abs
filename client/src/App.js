@@ -5,6 +5,7 @@ import {Switch, Route} from "react-router-dom";
 import TrainerContainer from './Components/TrainerContainer';
 import Calendar from './Components/Calendar'
 import { useState, useEffect } from 'react';
+import Home from './Components/Home';
 
 function App() {
   const [ trainers, setTrainers ] = useState([])
@@ -33,18 +34,10 @@ function App() {
     <div className="App">
       <NavBar />
       <div className="container">
-        <article>
-          <h1>What is Flat & Iron Abs Gym? </h1>
-          Flat & Iron Abs is a gym located in the Bay Area. This is created by three software engineers from the Flatiron School.  
-          <a
-            href="https://blog.logrocket.com/create-responsive-navbar-react-css/"
-            target="_blank"
-            rel="noreferrer"
-          >
-             Please watch a video tutorial.
-          </a>
-        </article>
       <Switch>
+        <Route path='/'>
+          <Home />
+        </Route>
         <Route path="/trainers">
           <TrainerContainer trainers={trainers} />
         </Route>
