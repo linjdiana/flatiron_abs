@@ -6,7 +6,7 @@ from flask_bcrypt import Bcrypt
 from werkzeug.exceptions import NotFound, Unauthorized
 
 from config import db, app, api
-from models import User
+from models import User, Trainer, Workout
 
 # app = Flask(__name__)
 # CORS(app)
@@ -108,4 +108,4 @@ class Workouts(Resource):
 api.add_resource(Workouts, '/workouts')
 
 if __name__ == '__main__':
-    app.run(port=5555)
+    app.run(port=5555, debug=True)

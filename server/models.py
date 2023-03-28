@@ -51,4 +51,4 @@ class Workout(db.Model, SerializerMixin):
     description = db.Column(db.String)
     trainer_id = db.Column(db.Integer, db.ForeignKey('trainers.id'))
 
-    trainers = db.relationship('Trainer', backref='workout')
+    # trainers = db.relationship('Trainer', backref='workout')
