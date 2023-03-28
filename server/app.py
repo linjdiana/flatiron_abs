@@ -18,10 +18,10 @@ db.init_app(app)
 
 api = Api(app)
 
-class Index(Resource):
-    def get(self):
-        return '<h1>hi</h1>'
-api.add_resource(Index, '/')
+# class Index(Resource):
+#     def get(self):
+#         return '<h1>hi</h1>'
+# api.add_resource(Index, '/')
 
 class Trainers(Resource):
     def get(self):
