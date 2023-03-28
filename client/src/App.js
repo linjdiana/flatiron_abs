@@ -17,7 +17,7 @@ function App() {
   const [ reviews, setReviews ] = useState([])
 
   useEffect(() => {
-    fetch("http://localhost:3000/trainers")
+    fetch("/trainers")
     .then((response) => response.json())
     .then((trainerData) => {
       setTrainers(trainerData)
@@ -25,7 +25,7 @@ function App() {
   }, [])
 
   useEffect(() => {
-    fetch("http://localhost:3000/workouts")
+    fetch("/workouts")
     .then((response) => response.json())
     .then((workoutData) => {
       setWorkouts(workoutData)
@@ -53,8 +53,8 @@ function App() {
   return (
     <div className="App">
       <div className="container">
+
       <NavBar />
-      
       <Switch>
         <Route exact path='/'>
           <Home />

@@ -3,6 +3,7 @@ import Calendar from './Calendar'
 import TrainerContainer from './TrainerContainer'
 import { useState } from 'react';
 import { NavLink, useHistory } from "react-router-dom";
+import Home from './Home';
 
 function NavBar({updateUser}) {
     const [isNavExpanded, setIsNavExpanded] = useState(false);
@@ -21,7 +22,9 @@ function NavBar({updateUser}) {
     return (
       <nav className="navigation">
         <a href="/" className="brand-name">
+          <NavLink exact to='/'>
           Flat & Iron Abs
+          </NavLink>
         </a>
         <button
           className="hamburger"

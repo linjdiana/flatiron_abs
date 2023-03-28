@@ -21,19 +21,12 @@ from models import User
 # migrate = Migrate(app, db)
 # db.init_app(app)
 
-# api = Api(app)
+api = Api(app)
 
-@app.route('/')
-def index():
-    return '<h1>hi</h1>'
-
-# @app.route('/trainers', methods=['GET'])
-# def movies():
-#     response_dict = {
-#         "text": "Trainers will go here"
-#     }
-
-#     return make_response(jsonify(response_dict), 200)
+# class Index(Resource):
+#     def get(self):
+#         return '<h1>hi</h1>'
+# api.add_resource(Index, '/')
 
 class Signup(Resource):
     def post(self):
@@ -94,6 +87,25 @@ def handle_not_found(e):
         404
     )
     return response
+class Trainers(Resource):
+    def get(self):
+        trainer_list = [t.to_dict() for t in Trainer.query.all()]
+        response = make_response(
+            trainer_list,
+            200
+        )
+        return response
+api.add_resource(Trainers, '/trainers')
+
+class Workouts(Resource):
+    def get(self):
+        workout_list = [w.to_dict() for w in Workout.query.all()]
+        response = make_response(
+            workout_list,
+            200
+        )
+        return response
+api.add_resource(Workouts, '/workouts')
 
 if __name__ == '__main__':
     app.run(port=5555)
