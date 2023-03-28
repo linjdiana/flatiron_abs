@@ -9,18 +9,18 @@ function AddReview({reviews}) {
     const history = useHistory()
     const addReview = (review) => setSubmittedReview(current => [...current,review])
         const formSchema = yup.object().shape({
-        reviewtext: yup.string().required("Please let us know what you thought!")
+        text: yup.string().required("Please let us know what you thought!")
     })
 
     const formik = useFormik({
         initialValues: {
             workout: "Get Yoked",
             rating: "5/5",
-            reviewtext: ""
+            text: " "
         },
         validationSchema: formSchema,
         onSubmit: (values) => {
-            fetch("/reviews", {
+            fetch("http://localhost:3000/reviews", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -30,6 +30,7 @@ function AddReview({reviews}) {
                 if(response.ok) {
                     response.json().then(review => {
                         addReview(review)
+                        console.log(review)
                         history.push("/reviews")
                     })
                 }
@@ -44,6 +45,7 @@ function AddReview({reviews}) {
                 <li>Workout: {reviewObj.workout}</li>
                 <li>Rating: {reviewObj.rating}</li>
                 <li>Review: {reviewObj.text}</li>
+                <br></br>
             </ul>
         )
     })
@@ -54,7 +56,7 @@ function AddReview({reviews}) {
             <form onSubmit={formik.handleSubmit}>
                 <label>
                     Workout:
-                    <select value={formik.values.workout} onChange={formik.handleChange} >
+                    <select name="workout" value={formik.values.workout} onChange={formik.handleChange} >
                         <option value="getyoked">Get Yoked</option>
                         <option value="running">Running, but like a lot</option>
                         <option value="spikeball">Spikeball/no mercy</option>
@@ -63,22 +65,23 @@ function AddReview({reviews}) {
                 <br></br>
                 <label>
                     Rating:
-                    <select value={formik.values.rating} onChange={formik.handleChange} >
-                        <option value="5">5/5</option>
-                        <option value="4">4/5</option>
-                        <option value="3">3/5</option>
-                        <option value="2">2/5</option>
-                        <option value="1">1/5</option>
+                    <select name="rating" value={formik.values.rating} onChange={formik.handleChange} >
+                        <option value="5/5">5/5</option>
+                        <option value="4/5">4/5</option>
+                        <option value="3/5">3/5</option>
+                        <option value="2/5">2/5</option>
+                        <option value="1/5">1/5</option>
                     </select>
                 </label>
                 <br></br>
                 <label>Review: </label>
-                <input type='text' name='reviewtext' value={formik.values.reviewtext} onChange={formik.handleChange} />
+                <textarea type='text' name="text" value={formik.values.text} onChange={formik.handleChange} />
                 <input type='submit' />
             </form>
             <br></br>
             <br></br>
             {renderReviews}
+            <br></br>
         </div>
     )  
 }
