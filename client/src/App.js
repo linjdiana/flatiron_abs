@@ -1,5 +1,6 @@
 import './App.css';
 import NavBar from './Components/NavBar'
+import Home from './Components/Home'
 import styled from 'styled-components'
 import {Switch, Route} from "react-router-dom";
 import TrainerContainer from './Components/TrainerContainer';
@@ -8,29 +9,22 @@ import { useState, useEffect } from 'react';
 function App() {
   const [ trainers, setTrainers ] = useState([])
 
+
   useEffect(() => {
-    fetch("/trainers")
+    fetch("http://localhost:3000/trainers")
     .then((response) => response.json())
     .then((trainerData) => {
       setTrainers(trainerData)
     })
   }, [])
 
-  return (
+
+
+ return (
     <div className="App">
       <NavBar />
+      <Home />
       <div className="container">
-        <article>
-          <h1>What is Flat & Iron Abs Gym? </h1>
-          Flat & Iron Abs is a gym located in the Bay Area. This is created by three software engineers from the Flatiron School.  
-          <a
-            href="https://blog.logrocket.com/create-responsive-navbar-react-css/"
-            target="_blank"
-            rel="noreferrer"
-          >
-             Please watch a video tutorial.
-          </a>
-        </article>
       <Switch>
         <Route path="/trainers">
           <TrainerContainer trainers={trainers} />
