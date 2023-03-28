@@ -5,10 +5,11 @@ import TrainerContainer from './Components/TrainerContainer';
 import Authentication from './Components/Authentication';
 import Home from "./Components/Home";
 import NavBar from "./Components/NavBar";
+import NotFound from './Components/NotFound'
 import { useState, useEffect } from 'react';
 
 function App() {
-  const [ trainers, setTrainers ] = useState([])
+  const [trainers, setTrainers ] = useState([])
   const [user, setUser] = useState(null);
 
   useEffect(() => {
@@ -21,7 +22,9 @@ function App() {
 
   useEffect(() => {
     fetchUser()
+    fetchTrainers()
   },[])
+
   const fetchTrainers = () => (
     fetch('/trainers')
     .then(res => res.json())
@@ -35,7 +38,6 @@ function App() {
         res.json()
         .then(data => {
           setUser(data)
-          fetchTrainers()
         })
       } else {
         console.log('hi')
@@ -79,16 +81,19 @@ function App() {
         <Route path="/trainers">
           <TrainerContainer trainers={trainers} />
         </Route>
-        <Route exact path='/authentication'>
+        <Route path='/authentication'>
           <Authentication updateUser={updateUser}/>
         </Route>
-        <Route exact path="/home">
+        <Route path="/home">
           <Home />
         </Route>
+        <Route path="/">
+            <Home />
+        </Route>
+        <Route path='/notfound'>
+            <NotFound />
+        </Route>
       </Switch>
-      <Route exact path="/">
-          <Home />
-      </Route>
       </div>
     </div>
   );

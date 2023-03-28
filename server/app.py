@@ -5,20 +5,23 @@ from flask_cors import CORS
 from flask_bcrypt import Bcrypt
 from werkzeug.exceptions import NotFound, Unauthorized
 
-from models import db, User
+from config import db, app, api
+from models import User
 
-app = Flask(__name__)
-CORS(app)
-bcrypt = Bcrypt(app)
+# app = Flask(__name__)
+# CORS(app)
+# bcrypt = Bcrypt(app)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///app.db'
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.json.compact = False
+# app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///app.db'
+# app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+# app.json.compact = False
 
-migrate = Migrate(app, db)
+# app.secret_key = b'Y\xf1Xz\x00\xad|eQ\x80t \xca\x1a\x10K'
+
+# migrate = Migrate(app, db)
 # db.init_app(app)
 
-api = Api(app)
+# api = Api(app)
 
 @app.route('/')
 def index():
@@ -35,11 +38,11 @@ def index():
 class Signup(Resource):
     def post(self):
         form_json = request.get_json()
-        new_user = User(name=form_json['name'], email=form_json['email'], _password_hash=form_json['password'])
+        new_user = User(name=form_json['name'], email=form_json['email'])
         new_user.password_hash = form_json['password']
         db.session.add(new_user)
         db.session.commit()
-
+        session['user_id'] = new_user.id
         response = make_response(
             new_user.to_dict(),
             201
@@ -50,8 +53,10 @@ api.add_resource(Signup, '/signup')
 class Login(Resource):
     def post(self):
         try: 
-            user = User.query.filter_by(name=request.get_json['name']).first()
-            if user.authenticate(request.get_json['password']):
+            user = User.query.filter_by(name=request.get_json()['name']).first()
+            import ipdb
+            ipdb.set_trace()
+            if user.authenticate(request.get_json()['password']):
                 session['user_id'] = user.id
                 response = make_response(
                     user.to_dict(),
