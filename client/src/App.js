@@ -35,7 +35,7 @@ function App() {
       <NavBar />
       <div className="container">
       <Switch>
-        <Route path='/home'>
+        <Route exact path='/'>
           <Home />
         </Route>
         <Route path="/trainers">

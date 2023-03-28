@@ -11,7 +11,7 @@ function NavBar() {
     return (
       <nav className="navigation">
         <a href="/" className="brand-name">
-          <NavLink exact to='/home'>
+          <NavLink exact to='/'>
           Flat & Iron Abs
           </NavLink>
         </a>
