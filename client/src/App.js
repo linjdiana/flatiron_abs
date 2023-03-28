@@ -1,19 +1,23 @@
 import './App.css';
-import NavBar from './Components/NavBar'
-import styled from 'styled-components'
+import {createGlobalStyle} from 'styled-components';
 import {Switch, Route} from "react-router-dom";
 import TrainerContainer from './Components/TrainerContainer';
+import Authentication from './Components/Authentication';
+import Home from "./Components/Home";
+import NavBar from "./Components/NavBar";
+import NotFound from './Components/NotFound';
+import Calendar from './Components/Calendar';
 import Calendar from './Components/Calendar';
 import AddReview from './Components/AddReview';
 import { useState, useEffect } from 'react';
 
 function App() {
-  const [ trainers, setTrainers ] = useState([])
-  const [ workouts, setWorkouts ] = useState([])
-
+  const [trainers, setTrainers ] = useState([]);
+  const [user, setUser] = useState(null);
+  const [ workouts, setWorkouts ] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:3000/trainers")
+    fetch("/trainers")
     .then((response) => response.json())
     .then((trainerData) => {
       setTrainers(trainerData)
@@ -29,31 +33,36 @@ function App() {
   }, [])
 
 
+  const updateUser = (user) => setUser(user)
+  if(!user) return (
+    <>
+      <GlobalStyle />
+      <NavBar/>
+      <Authentication updateUser={updateUser}/>
+    </>
+  )
 
   return (
     <div className="App">
-      <NavBar />
       <div className="container">
-        <article>
-          <h1>What is Flat & Iron Abs Gym? </h1>
-          Flat & Iron Abs is a gym located in the Bay Area. This is created by three software engineers from the Flatiron School.  
-          <a
-            href="https://blog.logrocket.com/create-responsive-navbar-react-css/"
-            target="_blank"
-            rel="noreferrer"
-          >
-             Please watch a video tutorial.
-          </a>
-        </article>
       <Switch>
+        <Route exact path='/'>
+          <Home />
+        </Route>
         <Route path="/trainers">
           <TrainerContainer trainers={trainers} />
         </Route>
         <Route path="/workouts" >
           <Calendar workouts={workouts} />
         </Route>
-        <Route path="/reviews">
-          <AddReview />
+        <Route path='/authentication'>
+          <Authentication updateUser={updateUser}/>
+        </Route>
+        <Route exact path="/">
+            <Home />
+        </Route>
+        <Route path='/notfound'>
+            <NotFound />
         </Route>
       </Switch>
       </div>
@@ -63,9 +72,9 @@ function App() {
 
 export default App;
 
-const Image = styled.img.attrs(() => ({
-  src:'https://images.unsplash.com/photo-1518834107812-67b0b7c58434?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1335&q=80', 
-}))`
-  position: absolute;
-  z-index:-1;
-`
+const GlobalStyle = createGlobalStyle`
+    body{
+      background-color: yellow; 
+      color:black;
+    }
+    `
