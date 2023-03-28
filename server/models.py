@@ -49,5 +49,6 @@ class Workout(db.Model, SerializerMixin):
     name = db.Column(db.String)
     time = db.Column(db.DateTime, server_default=db.func.now())
     description = db.Column(db.String)
+    trainer_id = db.Column(db.Integer, db.ForeignKey('trainers.id'))
 
     trainers = db.relationship('Trainer', backref='workout')

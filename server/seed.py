@@ -18,7 +18,7 @@ with app.app_context():
     db.session.commit()
 
     workouts = []
-    w1 = Workout(name='Curls', description='Gettin swoll')
+    w1 = Workout(name='Curls', description='Gettin swoll', trainer_id=1)
     workouts.append(w1)
     db.session.add_all(workouts)
     db.session.commit()
