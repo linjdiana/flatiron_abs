@@ -12,13 +12,13 @@ function CalendarCard({ workoutObj }) {
     const buttonText = showDescription ? "Hide Description" : "Show Description"
 
     return (
-        <span>
-            <h3>{name}</h3>
+        <span class="calendarcard">
+            <h2>{name}</h2>
             <h4>{time}</h4>
             <p>{trainer}</p>
-            <button onClick={handleClick}>{buttonText}</button>
+            <button className="button-16" onClick={handleClick}>{buttonText}</button>
             <p>{descriptionText}</p>
-            <button>Sign Up for {name} with {trainer}</button>
+            <button className="button-1">Work out with {trainer}</button>
             <br></br>
             <br></br>
             <br></br>

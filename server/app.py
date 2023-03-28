@@ -1,7 +1,6 @@
 from flask import request, make_response, jsonify, session, abort
 from flask_restful import Resource
 from werkzeug.exceptions import NotFound, Unauthorized
-
 from config import db, app, api
 from models import User
 

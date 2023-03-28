@@ -6,10 +6,16 @@ function Calendar({ workouts }) {
     });
 
     return (
-        <div>
+        <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center' }}>
             {renderWorkouts}
         </div>
     )
 }
 
 export default Calendar;
+
+
+
+
+
+
