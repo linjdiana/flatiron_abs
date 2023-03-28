@@ -3,7 +3,6 @@ from sqlalchemy_serializer import SerializerMixin
 from sqlalchemy.orm import validates
 from sqlalchemy.ext.hybrid import hybrid_property
 from config import db, bcrypt
-# db = SQLAlchemy()
 
 # class Trainer(db.Model, SerializerMixin):
 #     __tablename__ = 'trainers'
@@ -32,4 +31,3 @@ class User(db.Model, SerializerMixin):
     def authenticate(self, password):
         return bcrypt.check_password_hash(self._password_hash, password.encode('utf-8'))
 
-# from app import bcrypt 

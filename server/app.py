@@ -1,39 +1,13 @@
-from flask import Flask, request, make_response, jsonify, session, abort
-from flask_migrate import Migrate
-from flask_restful import Api, Resource
-from flask_cors import CORS
-from flask_bcrypt import Bcrypt
+from flask import request, make_response, jsonify, session, abort
+from flask_restful import Resource
 from werkzeug.exceptions import NotFound, Unauthorized
 
 from config import db, app, api
 from models import User
 
-# app = Flask(__name__)
-# CORS(app)
-# bcrypt = Bcrypt(app)
-
-# app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///app.db'
-# app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-# app.json.compact = False
-
-# app.secret_key = b'Y\xf1Xz\x00\xad|eQ\x80t \xca\x1a\x10K'
-
-# migrate = Migrate(app, db)
-# db.init_app(app)
-
-# api = Api(app)
-
 @app.route('/')
 def index():
     return '<h1>hi</h1>'
-
-# @app.route('/trainers', methods=['GET'])
-# def movies():
-#     response_dict = {
-#         "text": "Trainers will go here"
-#     }
-
-#     return make_response(jsonify(response_dict), 200)
 
 class Signup(Resource):
     def post(self):
@@ -54,8 +28,6 @@ class Login(Resource):
     def post(self):
         try: 
             user = User.query.filter_by(name=request.get_json()['name']).first()
-            # import ipdb
-            # ipdb.set_trace()
             if user.authenticate(request.get_json()['password']):
                 session['user_id'] = user.id
                 response = make_response(
