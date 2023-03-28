@@ -4,11 +4,11 @@ import { useState, useEffect } from "react";
 import {useFormik } from "formik";
 import * as yup from "yup";
 
-function AddReview() {
+function AddReview({reviews}) {
     const [submittedReview, setSubmittedReview] = useState([])
     const history = useHistory()
     const addReview = (review) => setSubmittedReview(current => [...current,review])
-    const formSchema = yup.object().shape({
+        const formSchema = yup.object().shape({
         reviewtext: yup.string().required("Please let us know what you thought!")
     })
 
@@ -37,8 +37,20 @@ function AddReview() {
         }
     })
 
+    const renderReviews = reviews.map((reviewObj) => {
+        return (
+            <ul key={reviews.id}>
+                <li>User: {reviewObj.user}</li>
+                <li>Workout: {reviewObj.workout}</li>
+                <li>Rating: {reviewObj.rating}</li>
+                <li>Review: {reviewObj.text}</li>
+            </ul>
+        )
+    })
+
     return (
         <div>
+             <br></br> <br></br>
             <form onSubmit={formik.handleSubmit}>
                 <label>
                     Workout:
@@ -59,12 +71,16 @@ function AddReview() {
                         <option value="1">1/5</option>
                     </select>
                 </label>
-                <label>Review</label>
+                <br></br>
+                <label>Review: </label>
                 <input type='text' name='reviewtext' value={formik.values.reviewtext} onChange={formik.handleChange} />
                 <input type='submit' />
             </form>
+            <br></br>
+            <br></br>
+            {renderReviews}
         </div>
-    )
+    )  
 }
 
 export default AddReview;
