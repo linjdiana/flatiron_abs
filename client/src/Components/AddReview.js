@@ -40,50 +40,65 @@ function AddReview({reviews}) {
 
     const renderReviews = reviews.map((reviewObj) => {
         return (
-            <ul key={reviews.id}>
-                <li>User: {reviewObj.user}</li>
-                <li>Workout: {reviewObj.workout}</li>
-                <li>Rating: {reviewObj.rating}</li>
-                <li>Review: {reviewObj.text}</li>
-                <br></br>
+          <ul class="reviewcard" key={reviews.id}>
+            <ul class="author">{reviewObj.user}</ul>
+            {/* <ul>Workout: {reviewObj.workout}</ul> */}
+            <ul>
+              <strong>{reviewObj.rating}</strong>
             </ul>
-        )
-    })
-
-    return (
+            <p>{reviewObj.text}</p>
+            <br></br>
+          </ul>
+        );
+      });
+      
+      return (
         <div>
-             <br></br> <br></br>
-            <form onSubmit={formik.handleSubmit}>
-                <label>
-                    Workout:
-                    <select name="workout" value={formik.values.workout} onChange={formik.handleChange} >
-                        <option value="getyoked">Get Yoked</option>
-                        <option value="running">Running, but like a lot</option>
-                        <option value="spikeball">Spikeball/no mercy</option>
-                    </select>
-                </label>
-                <br></br>
-                <label>
-                    Rating:
-                    <select name="rating" value={formik.values.rating} onChange={formik.handleChange} >
-                        <option value="5/5">5/5</option>
-                        <option value="4/5">4/5</option>
-                        <option value="3/5">3/5</option>
-                        <option value="2/5">2/5</option>
-                        <option value="1/5">1/5</option>
-                    </select>
-                </label>
-                <br></br>
-                <label>Review: </label>
-                <textarea type='text' name="text" value={formik.values.text} onChange={formik.handleChange} />
-                <input type='submit' />
-            </form>
+          <br></br> <br></br>
+          <form onSubmit={formik.handleSubmit}>
+            <label>
+              Workout:
+              <select
+                name="workout"
+                value={formik.values.workout}
+                onChange={formik.handleChange}
+              >
+                <option value="getyoked">Get Yoked</option>
+                <option value="running">Running, but like a lot</option>
+                <option value="spikeball">Spikeball/no mercy</option>
+              </select>
+            </label>
             <br></br>
+            <label>
+              Rating:
+              <select
+                name="rating"
+                value={formik.values.rating}
+                onChange={formik.handleChange}
+              >
+                <option value="5/5">5/5</option>
+                <option value="4/5">4/5</option>
+                <option value="3/5">3/5</option>
+                <option value="2/5">2/5</option>
+                <option value="1/5">1/5</option>
+              </select>
+            </label>
             <br></br>
-            {renderReviews}
-            <br></br>
+            <label>Review: </label>
+            <textarea
+              type="text"
+              name="text"
+              value={formik.values.text}
+              onChange={formik.handleChange}
+            />
+            <input type="submit" />
+          </form>
+          <br></br>
+          <br></br>
+          <div className="reviewscontainer">{renderReviews}</div>
+          <br></br>
         </div>
-    )  
+      );
 }
 
 export default AddReview;
