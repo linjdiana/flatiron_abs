@@ -5,14 +5,8 @@ from sqlalchemy.ext.hybrid import hybrid_property
 from config import db, bcrypt
 # db = SQLAlchemy()
 
-# class Trainer(db.Model, SerializerMixin):
-#     __tablename__ = 'trainers'
-
-#     id = db.Column(db.Integer, primary_key=True)
-#     name = db.Column(db.String)
-
-class User(db.Model, SerializerMixin):
-    __tablename__ = 'users'
+class Trainer(db.Model, SerializerMixin):
+    __tablename__ = 'trainers'
 
     id = db.Column(db.Integer, primary_key=True)
     workout_id = db.Column(db.Integer, db.ForeignKey('workouts.id'))
@@ -20,15 +14,10 @@ class User(db.Model, SerializerMixin):
     image = db.Column(db.String)
     bio = db.Column(db.String)
 
-class Workout(db.Model, SerializerMixin):
-    __tablename__ = 'workouts'
-
+class User(db.Model, SerializerMixin):
+    __tablename__ = 'users'
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String)
-    time = db.Column(db.DateTime, server_default=db.func.now())
-    description = db.Column(db.String)
-
-    trainers = db.relationship('Trainer', backref='workout')
     email = db.Column(db.String)
     _password_hash = db.Column(db.String)
     # admin = db.Column(db.String, default=False)
@@ -45,4 +34,12 @@ class Workout(db.Model, SerializerMixin):
     def authenticate(self, password):
         return bcrypt.check_password_hash(self._password_hash, password.encode('utf-8'))
 
-# from app import bcrypt 
+class Workout(db.Model, SerializerMixin):
+    __tablename__ = 'workouts'
+
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String)
+    time = db.Column(db.DateTime, server_default=db.func.now())
+    description = db.Column(db.String)
+
+    trainers = db.relationship('Trainer', backref='workout')

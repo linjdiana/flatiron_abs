@@ -57,9 +57,9 @@ function App() {
         <Route path='/authentication'>
           <Authentication updateUser={updateUser}/>
         </Route>
-        <Route exact path="/">
+        {/* <Route exact path="/">
             <Home />
-        </Route>
+        </Route> */}
         <Route path='/notfound'>
             <NotFound />
         </Route>

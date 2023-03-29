@@ -1,6 +1,6 @@
 from flask import Flask, request, make_response, jsonify, session, abort
 from flask_migrate import Migrate
-from flask_restful import Api, Resource
+from flask_restful import Resource
 from flask_cors import CORS
 from flask_bcrypt import Bcrypt
 from werkzeug.exceptions import NotFound, Unauthorized
