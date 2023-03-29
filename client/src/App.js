@@ -8,6 +8,7 @@ import NavBar from "./Components/NavBar";
 import NotFound from './Components/NotFound';
 import Calendar from './Components/Calendar';
 import { useState, useEffect } from 'react';
+import Home from './Components/Home';
 
 function App() {
   const [trainers, setTrainers ] = useState([]);
@@ -23,7 +24,7 @@ function App() {
   }, [])
 
   useEffect(() => {
-    fetch("http://localhost:3000/workouts")
+    fetch("/workouts")
     .then((response) => response.json())
     .then((workoutData) => {
       setWorkouts(workoutData)
@@ -43,7 +44,10 @@ function App() {
   return (
     <div className="App">
       <div className="container">
+<<<<<<< HEAD
       <NavBar />
+=======
+>>>>>>> origin/topher
       <Switch>
         <Route exact path='/'>
           <Home />

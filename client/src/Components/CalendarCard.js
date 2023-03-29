@@ -18,7 +18,7 @@ function CalendarCard({ workoutObj }) {
             <p>{trainer}</p>
             <button className="button-16" onClick={handleClick}>{buttonText}</button>
             <p>{descriptionText}</p>
-            <button className="button-1">Work out with {trainer}</button>
+            <button className="workoutbutton">Work out with {trainer}</button>
             <br></br>
             <br></br>
             <br></br>

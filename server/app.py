@@ -1,8 +1,8 @@
 from flask import request, make_response, jsonify, session, abort
-from flask_restful import Resource
+from flask_restful import Resource, Api
 from werkzeug.exceptions import NotFound, Unauthorized
 from config import db, app, api
-from models import User
+from models import User, Trainer, Workout
 
 @app.route('/')
 def index():
@@ -37,6 +37,15 @@ class Login(Resource):
         except:
             abort(401, "Incorrect Username or Password")
 api.add_resource(Login, '/login')
+class Trainers(Resource):
+    def get(self):
+        trainer_list = [t.to_dict() for t in Trainer.query.all()]
+        response = make_response(
+            trainer_list,
+            200
+        )
+        return response
+api.add_resource(Trainers, '/trainers')
 
 class AuthorizedSession(Resource):
     def get(self):
@@ -65,6 +74,15 @@ def handle_not_found(e):
         404
     )
     return response
+class Workouts(Resource):
+    def get(self):
+        workout_list = [w.to_dict() for w in Workout.query.all()]
+        response = make_response(
+            workout_list,
+            200
+        )
+        return response
+api.add_resource(Workouts, '/workouts')
 
 if __name__ == '__main__':
     app.run(port=5555)

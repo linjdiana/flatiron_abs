@@ -14,7 +14,9 @@ class User(db.Model, SerializerMixin):
     __tablename__ = 'users'
 
     id = db.Column(db.Integer, primary_key=True)
+    workout_id = db.Column(db.Integer, db.ForeignKey('workouts.id'))
     name = db.Column(db.String)
+<<<<<<< HEAD
     email = db.Column(db.String)
     _password_hash = db.Column(db.String)
     # admin = db.Column(db.String, default=False)
@@ -31,3 +33,17 @@ class User(db.Model, SerializerMixin):
     def authenticate(self, password):
         return bcrypt.check_password_hash(self._password_hash, password.encode('utf-8'))
 
+=======
+    image = db.Column(db.String)
+    bio = db.Column(db.String)
+
+class Workout(db.Model, SerializerMixin):
+    __tablename__ = 'workouts'
+
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String)
+    time = db.Column(db.DateTime, server_default=db.func.now())
+    description = db.Column(db.String)
+
+    trainers = db.relationship('Trainer', backref='workout')
+>>>>>>> origin/topher

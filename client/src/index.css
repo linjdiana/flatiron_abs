@@ -47,7 +47,7 @@ code {
   outline: none;
 }
 
-.button-1 {
+.workoutbutton {
   outline: 0;
   grid-gap: 8px;
   align-items: center;
@@ -67,11 +67,11 @@ code {
   text-overflow: ellipsis;
   transition: all .14s ease-out;
   white-space: nowrap;}
-.button-1:hover {
+.workoutbutton:hover {
     box-shadow: 4px 4px 0 #000;
     transform: translate(-4px,-4px);
 }
-.button-1:focus-visible{
+.workoutbutton:focus-visible{
     outline-offset: 1px;
 }
 

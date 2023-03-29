@@ -2,7 +2,12 @@ import Reviews from './Reviews'
 import Calendar from './Calendar'
 import TrainerContainer from './TrainerContainer'
 import { useState } from 'react';
+<<<<<<< HEAD
 import { NavLink, useHistory } from "react-router-dom";
+=======
+import { NavLink } from "react-router-dom";
+import Home from './Home';
+>>>>>>> origin/topher
 
 function NavBar({updateUser}) {
     const [isNavExpanded, setIsNavExpanded] = useState(false);
@@ -21,8 +26,11 @@ function NavBar({updateUser}) {
     return (
       <nav className="navigation">
         <a href="/" className="brand-name">
+          <NavLink exact to='/'>
           Flat & Iron Abs
+          </NavLink>
         </a>
+<<<<<<< HEAD
         <button
           className="hamburger"
           onClick={() => {
@@ -41,6 +49,8 @@ function NavBar({updateUser}) {
               clipRule="evenodd"/>
           </svg>
         </button>
+=======
+>>>>>>> origin/topher
         <div
           className={isNavExpanded ? "navigation-menu expanded" : "navigation-menu"}>
           <ul>
