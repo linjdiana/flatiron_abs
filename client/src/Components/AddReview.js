@@ -15,7 +15,7 @@ function AddReview({reviews, workouts}) {
     const formik = useFormik({
         initialValues: {
             user: "",
-            workout: "",
+            workout_id: workouts[0]?.id,
             rating: "5/5",
             text: " "
         },
@@ -42,7 +42,7 @@ function AddReview({reviews, workouts}) {
 
     const workoutOptions = workouts.map((workoutObj) => {
         return (
-            <p key={workoutObj.id}>{workoutObj.name} with {workoutObj.trainer.name}</p>
+            <option value={workoutObj.id} key={workoutObj.id}>{workoutObj.name} with {workoutObj.trainer.name}</option>
         )
     })
 
@@ -50,7 +50,7 @@ function AddReview({reviews, workouts}) {
         return (
             <ul key={reviewObj.id}>
                 <li>User: {reviewObj.user}</li>
-                <li>Workout: {reviewObj.workout}</li>
+                <li>Workout: {reviewObj.workout.name}</li>
                 <li>Rating: {reviewObj.rating}</li>
                 <li>Review: {reviewObj.text}</li>
                 <br></br>
@@ -67,10 +67,8 @@ function AddReview({reviews, workouts}) {
                 <br></br>
                 <label>
                     Workout:
-                    <select name="workout" value={formik.values.workout} onChange={formik.handleChange} >
-                        <option value="getyoked">{workoutOptions[0]}</option>
-                        <option value="running">{workoutOptions[1]}</option>
-                        <option value="spikeball">{workoutOptions[2]}</option>
+                    <select name="workout_id" value={formik.values.workout_id} onChange={formik.handleChange} >
+                        {workoutOptions}
                     </select>
                 </label>
                 <br></br>

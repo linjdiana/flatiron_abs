@@ -66,4 +66,4 @@ class Review(db.Model, SerializerMixin):
     rating = db.Column(db.String)
     text = db.Column(db.String)
 
-    workouts = db.relationship('Workout', backref='workout')
+    workout = db.relationship('Workout', backref='workout')

@@ -119,7 +119,7 @@ class Reviews(Resource):
         data=request.get_json()
         new_review = Review(
             user=data['user'],
-            workout=data['workout.name'],
+            workout_id=data['workout_id'],
             rating=data['rating'],
             text=data['text']
         )
