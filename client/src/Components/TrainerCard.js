@@ -1,7 +1,8 @@
 import { useState } from "react";
+import '../index.css';
 
 function TrainerCard({ trainerObj }) {
-    const { id, name, image, bio } = trainerObj
+    const { name, image, bio } = trainerObj
     const [ showBio, setShowBio ] = useState(false)
     function handleClick() {
         setShowBio((currentBio) => !currentBio)
@@ -11,11 +12,14 @@ function TrainerCard({ trainerObj }) {
     const buttonText = showBio ? "Hide Bio" : "Show Bio"
 
     return (
-        <div>
+        <div class="trainercard">
+            <h1><strong>{name}</strong></h1>
             <img src={image} alt="trainer pic" />
-            <h3>{name}</h3>
-            <button onClick={handleClick}>{buttonText}</button>
-            <p>{bioText}</p>
+            <figcaption>
+                <h3>More Info</h3>
+                <p>{bioText}</p>
+                <button onClick={handleClick}>{buttonText}</button>
+            </figcaption>
         </div>
     )
 }

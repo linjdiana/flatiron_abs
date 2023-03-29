@@ -2,6 +2,7 @@ body {
   background-image: url("https://hips.hearstapps.com/hmg-prod/images/tasman-glacier-lake-royalty-free-image-1623252368.jpg?crop=1xw:1xh;center,top&resize=980:*");
   backdrop-filter: blur(6px) opacity(0.7);
   background-repeat: no-repeat;
+  background-size: 125%;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
@@ -81,7 +82,7 @@ code {
   flex-direction: column;
   justify-content: space-between;
   margin: 0 auto;
-  max-width: 200px;
+  width: 250px;
   height: 300px;
   padding: 5px;
   border: 1px solid rgba(255, 255, 255, .25);
@@ -89,4 +90,112 @@ code {
   background-color: rgba(255, 255, 255, 0.45);
   box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.25);
   backdrop-filter: blur(15px);
+}
+
+.trainercontainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  height: 75vh;
+}
+.trainercontainer html {
+	font-family: 'Roboto', sans-serif;
+	font-size: 16px;
+	font-smooth: auto;
+	font-weight: 300;
+	line-height: 1.5;
+	color: #444;
+}
+
+
+.trainercontainer body {
+	position: relative;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	height: 100vh;
+}
+
+.trainercard {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 259px; /* 70% of 375px */
+  min-width: 259px; /* 70% of 375px */
+  height: 467px; /* 70% of 667px */
+  border-radius: 10px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  transition: all 0.3s cubic-bezier(.25, .8, .25, 1);
+  overflow: hidden;
+}
+
+.trainercard:hover {
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+}
+
+.trainercard:hover h1 {
+  opacity: 0;
+  transform: scale(0.7);
+}
+
+.trainercard:hover img {
+  transform: scale(1.25);
+  opacity: 0.5; 
+}
+
+.trainercard:hover figcaption {
+  bottom: 0;
+}
+
+.trainercard h1 {
+  position: absolute;
+  top: 35px; /* 70% of 50px */
+  left: 14px; /* 70% of 20px */
+  margin: 0;
+  padding: 0;
+  color: black;
+  font-size: 42px; /* 70% of 60px */
+  font-weight: 100;
+  line-height: 1;
+  opacity: 1;
+  transform: scale(1);
+  transition: 0.25s ease;
+  z-index: 999;
+}
+
+.trainercard img {
+  width: 259px; /* 70% of 375px */
+  height: 280px; /* 70% of 400px */
+  object-fit: cover;
+  transition: 0.25s;
+  opacity: 0.9;
+}
+
+.trainercard figcaption {
+  position: absolute;
+  bottom: 0;
+  padding: 14px; /* 70% of 20px */
+  background-color: white;
+  color: black;
+  width: 100%;
+  text-align: center;
+}
+
+.trainercard p {
+  font-size: 9.8px; /* 70% of 14px */
+  line-height: 1.75;
+}
+
+.trainercard button {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 7px 0 0; /* 70% of 10px */
+  padding: 7px 21px;
 }

@@ -1,4 +1,5 @@
 import './App.css';
+import './index.css';
 import {createGlobalStyle} from 'styled-components';
 import {Switch, Route} from "react-router-dom";
 import TrainerContainer from './Components/TrainerContainer';

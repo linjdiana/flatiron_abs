@@ -5,7 +5,7 @@ function TrainerContainer({ trainers }) {
     return <TrainerCard key={trainers.id} trainerObj={trainerObj} />
   });
     return (
-      <div className="App" id="trainers">
+      <div className="trainercontainer" id="trainers">
         {trainerItems}
       </div>
     );
