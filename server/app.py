@@ -121,6 +121,7 @@ class Reviews(Resource):
             user=data['user'],
             workout_id=data['workout_id'],
             rating=data['rating'],
+            workout_id=data['workout_id'],
             text=data['text']
         )
         db.session.add(new_review)
