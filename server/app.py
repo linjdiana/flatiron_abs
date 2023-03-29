@@ -5,7 +5,7 @@ from flask_cors import CORS
 from flask_bcrypt import Bcrypt
 from werkzeug.exceptions import NotFound, Unauthorized
 
-from config import db, app, api
+from config import db, app, Api
 from models import User, Trainer, Workout, Review
 
 api = Api(app)

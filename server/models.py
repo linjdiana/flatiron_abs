@@ -5,22 +5,11 @@ from sqlalchemy.ext.hybrid import hybrid_property
 from config import db, bcrypt
 # db = SQLAlchemy()
 
-class Trainer(db.Model, SerializerMixin):
-    __tablename__ = 'trainers'
-
-    id = db.Column(db.Integer, primary_key=True)
-    workout_id = db.Column(db.Integer, db.ForeignKey('workouts.id'))
-    name = db.Column(db.String)
-<<<<<<< HEAD
-    image = db.Column(db.String)
-    bio = db.Column(db.String)
 
 class User(db.Model, SerializerMixin):
     __tablename__ = 'users'
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String)
-=======
->>>>>>> brett
     email = db.Column(db.String)
     _password_hash = db.Column(db.String)
     # admin = db.Column(db.String, default=False)
@@ -50,7 +39,7 @@ class Trainer(db.Model, SerializerMixin):
     
 
     # workouts = db.relationship('Workout', backref="trainer")
-    serialize_rules = ('-workouts.trainer',)
+    # serialize_rules = ('-workouts.trainer',)
 
 class Workout(db.Model, SerializerMixin):
     __tablename__ = 'workouts'
@@ -63,9 +52,8 @@ class Workout(db.Model, SerializerMixin):
     description = db.Column(db.String)
     trainer_id = db.Column(db.Integer, db.ForeignKey('trainers.id'))
 
-    trainer = db.relationship('Trainer', backref='workouts')
-    serialize_rules = ('-trainer.workouts',)
-    trainers = db.relationship('Trainer', backref='workout')
+    trainer = db.relationship('Trainer', backref='workout')
+    # serialize_rules = ('-trainer.workouts',)
 
 class Review(db.Model, SerializerMixin):
     __tablename__ = 'reviews'
@@ -74,7 +62,7 @@ class Review(db.Model, SerializerMixin):
     user = db.Column(db.String)
     workout_id = db.Column(db.Integer, db.ForeignKey('workouts.id'))
     trainer_id = db.Column(db.Integer, db.ForeignKey('trainers.id'))
-    # should rating be an integer?
+    
     rating = db.Column(db.String)
     text = db.Column(db.String)
 
