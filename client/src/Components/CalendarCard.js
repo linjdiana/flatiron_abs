@@ -15,10 +15,10 @@ function CalendarCard({ workoutObj }) {
         <span>
             <h3>{name}</h3>
             <h4>{time}</h4>
-            <p>{trainer}</p>
+            <p>{trainer.name}</p>
             <button onClick={handleClick}>{buttonText}</button>
             <p>{descriptionText}</p>
-            <button>Sign Up for {name} with {trainer}</button>
+            <button>Sign Up for {name} with {trainer.name}</button>
             <br></br>
             <br></br>
             <br></br>

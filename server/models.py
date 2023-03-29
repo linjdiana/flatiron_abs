@@ -41,6 +41,10 @@ class Trainer(db.Model, SerializerMixin):
     name = db.Column(db.String)
     image = db.Column(db.String)
     bio = db.Column(db.String)
+    
+
+    # workouts = db.relationship('Workout', backref="trainer")
+    serialize_rules = ('-workouts.trainer',)
 
 class Workout(db.Model, SerializerMixin):
     __tablename__ = 'workouts'
@@ -51,4 +55,5 @@ class Workout(db.Model, SerializerMixin):
     description = db.Column(db.String)
     trainer_id = db.Column(db.Integer, db.ForeignKey('trainers.id'))
 
-    # trainers = db.relationship('Trainer', backref='workout')
+    trainer = db.relationship('Trainer', backref='workouts')
+    serialize_rules = ('-trainer.workouts',)
