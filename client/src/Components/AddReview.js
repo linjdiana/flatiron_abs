@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import {useFormik } from "formik";
 import * as yup from "yup";
 
-function AddReview({reviews}) {
+function AddReview({reviews, workouts}) {
     const [submittedReview, setSubmittedReview] = useState([])
     const history = useHistory()
     const addReview = (review) => setSubmittedReview(current => [...current,review])
@@ -14,18 +14,20 @@ function AddReview({reviews}) {
 
     const formik = useFormik({
         initialValues: {
-            workout: "Get Yoked",
+            user: "",
+            workout: "",
             rating: "5/5",
             text: " "
         },
         validationSchema: formSchema,
         onSubmit: (values) => {
+            console.log(values)
             fetch("/reviews", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify(values, null, 2),
+                body: JSON.stringify(values),
             }).then((response) => {
                 if(response.ok) {
                     response.json().then(review => {
@@ -38,9 +40,15 @@ function AddReview({reviews}) {
         }
     })
 
+    const workoutOptions = workouts.map((workoutObj) => {
+        return (
+            <p key={workoutObj.id}>{workoutObj.name} with {workoutObj.trainer.name}</p>
+        )
+    })
+
     const renderReviews = reviews.map((reviewObj) => {
         return (
-            <ul key={reviews.id}>
+            <ul key={reviewObj.id}>
                 <li>User: {reviewObj.user}</li>
                 <li>Workout: {reviewObj.workout}</li>
                 <li>Rating: {reviewObj.rating}</li>
@@ -54,12 +62,15 @@ function AddReview({reviews}) {
         <div>
              <br></br> <br></br>
             <form onSubmit={formik.handleSubmit}>
+                <label>User: </label>
+                <input type='text' name='user' value={formik.values.user} onChange={formik.handleChange} />
+                <br></br>
                 <label>
                     Workout:
                     <select name="workout" value={formik.values.workout} onChange={formik.handleChange} >
-                        <option value="getyoked">Get Yoked</option>
-                        <option value="running">Running, but like a lot</option>
-                        <option value="spikeball">Spikeball/no mercy</option>
+                        <option value="getyoked">{workoutOptions[0]}</option>
+                        <option value="running">{workoutOptions[1]}</option>
+                        <option value="spikeball">{workoutOptions[2]}</option>
                     </select>
                 </label>
                 <br></br>

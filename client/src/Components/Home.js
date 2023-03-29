@@ -10,7 +10,7 @@ function Home(){
           >
              Please watch a video tutorial.
           </a>
-          <img src='https://github.com/linjdiana/flatiron_abs/blob/topher/images/javonn.png?raw=true' alt=''></img>
+          {/* <img src='https://github.com/linjdiana/flatiron_abs/blob/topher/images/javonn.png?raw=true' alt=''></img> */}
         </article>
    )
 }

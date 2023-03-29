@@ -72,7 +72,7 @@ console.log(workouts)
             <NotFound />
         </Route>
         <Route path='/reviews'>
-          <AddReview reviews={reviews} />
+          <AddReview reviews={reviews} workouts={workouts} />
         </Route>
       </Switch>
       </div>

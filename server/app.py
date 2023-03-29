@@ -87,6 +87,23 @@ class Workouts(Resource):
             200
         )
         return response
+    
+    # def post(self):
+    #     data=request.get_json()
+    #     new_review = Review(
+    #         user=data['user'],
+    #         workout=data['workout'],
+    #         rating=data['rating'],
+    #         text=data['text']
+    #     )
+    #     db.session.add(new_review)
+    #     db.session.commit()
+
+    #     response = make_response(
+    #         new_review.to_dict(),
+    #         201
+    #     )
+    #     return response
 api.add_resource(Workouts, '/workouts')
 
 class Reviews(Resource):
@@ -95,6 +112,23 @@ class Reviews(Resource):
         response = make_response(
             review_list,
             200
+        )
+        return response
+    
+    def post(self):
+        data=request.get_json()
+        new_review = Review(
+            user=data['user'],
+            workout=data['workout.name'],
+            rating=data['rating'],
+            text=data['text']
+        )
+        db.session.add(new_review)
+        db.session.commit()
+
+        response = make_response(
+            new_review.to_dict(),
+            201
         )
         return response
 api.add_resource(Reviews, '/reviews')
