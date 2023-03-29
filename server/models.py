@@ -5,18 +5,22 @@ from sqlalchemy.ext.hybrid import hybrid_property
 from config import db, bcrypt
 # db = SQLAlchemy()
 
-# class Trainer(db.Model, SerializerMixin):
-#     __tablename__ = 'trainers'
-
-#     id = db.Column(db.Integer, primary_key=True)
-#     name = db.Column(db.String)
-
-class User(db.Model, SerializerMixin):
-    __tablename__ = 'users'
+class Trainer(db.Model, SerializerMixin):
+    __tablename__ = 'trainers'
 
     id = db.Column(db.Integer, primary_key=True)
     workout_id = db.Column(db.Integer, db.ForeignKey('workouts.id'))
     name = db.Column(db.String)
+<<<<<<< HEAD
+    image = db.Column(db.String)
+    bio = db.Column(db.String)
+
+class User(db.Model, SerializerMixin):
+    __tablename__ = 'users'
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String)
+=======
+>>>>>>> brett
     email = db.Column(db.String)
     _password_hash = db.Column(db.String)
     # admin = db.Column(db.String, default=False)
@@ -37,6 +41,8 @@ class User(db.Model, SerializerMixin):
 class Trainer(db.Model, SerializerMixin):
     __tablename__ = "trainers"
 
+    serialize_rules = ('-workout',) 
+
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String)
     image = db.Column(db.String)
@@ -49,6 +55,8 @@ class Trainer(db.Model, SerializerMixin):
 class Workout(db.Model, SerializerMixin):
     __tablename__ = 'workouts'
 
+    serialize_rules = ('-workout',)
+
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String)
     time = db.Column(db.DateTime, server_default=db.func.now())
@@ -57,3 +65,17 @@ class Workout(db.Model, SerializerMixin):
 
     trainer = db.relationship('Trainer', backref='workouts')
     serialize_rules = ('-trainer.workouts',)
+    trainers = db.relationship('Trainer', backref='workout')
+
+class Review(db.Model, SerializerMixin):
+    __tablename__ = 'reviews'
+
+    id = db.Column(db.Integer, primary_key=True)
+    user = db.Column(db.String)
+    workout_id = db.Column(db.Integer, db.ForeignKey('workouts.id'))
+    trainer_id = db.Column(db.Integer, db.ForeignKey('trainers.id'))
+    # should rating be an integer?
+    rating = db.Column(db.String)
+    text = db.Column(db.String)
+
+    workouts = db.relationship('Workout', backref='workout')

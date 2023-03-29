@@ -1,32 +1,14 @@
 from flask import Flask, request, make_response, jsonify, session, abort
 from flask_migrate import Migrate
-from flask_restful import Api, Resource
+from flask_restful import Resource
 from flask_cors import CORS
 from flask_bcrypt import Bcrypt
 from werkzeug.exceptions import NotFound, Unauthorized
 
 from config import db, app, api
-from models import User, Trainer, Workout
-
-# app = Flask(__name__)
-# CORS(app)
-# bcrypt = Bcrypt(app)
-
-# app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///app.db'
-# app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-# app.json.compact = False
-
-# app.secret_key = b'Y\xf1Xz\x00\xad|eQ\x80t \xca\x1a\x10K'
-
-# migrate = Migrate(app, db)
-# db.init_app(app)
+from models import User, Trainer, Workout, Review
 
 api = Api(app)
-
-# class Index(Resource):
-#     def get(self):
-#         return '<h1>hi</h1>'
-# api.add_resource(Index, '/')
 
 class Signup(Resource):
     def post(self):
@@ -106,6 +88,16 @@ class Workouts(Resource):
         )
         return response
 api.add_resource(Workouts, '/workouts')
+
+class Reviews(Resource):
+    def get(self):
+        review_list = [r.to_dict() for r in Review.query.all()]
+        response = make_response(
+            review_list,
+            200
+        )
+        return response
+api.add_resource(Reviews, '/reviews')
 
 if __name__ == '__main__':
     app.run(port=5555, debug=True)

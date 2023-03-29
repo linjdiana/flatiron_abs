@@ -3,6 +3,7 @@ import { useState } from "react"
 function CalendarCard({ workoutObj }) {
     const { id, time, trainer, name, description } = workoutObj
     const [showDescription, setShowDescription] = useState(false)
+    console.log(workoutObj.trainers.name)
 
     function handleClick() {
         setShowDescription((currentDescription) => !currentDescription)
@@ -10,8 +11,10 @@ function CalendarCard({ workoutObj }) {
 
     const descriptionText = showDescription ? <p>{description}</p> : null;
     const buttonText = showDescription ? "Hide Description" : "Show Description"
+   
 
     return (
+
         <span>
             <h3>{name}</h3>
             <h4>{time}</h4>
