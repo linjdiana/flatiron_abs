@@ -29,7 +29,7 @@ class User(db.Model, SerializerMixin):
 class Trainer(db.Model, SerializerMixin):
     __tablename__ = "trainers"
 
-    serialize_rules = ('-workout',) 
+    serialize_rules = ('-workouts',) 
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String)
@@ -39,7 +39,7 @@ class Trainer(db.Model, SerializerMixin):
 class Workout(db.Model, SerializerMixin):
     __tablename__ = 'workouts'
 
-    serialize_rules = ('-workout',)
+    serialize_rules = ('-workouts', '-trainer.bio', '-trainer.image', '-trainer.id')
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String)
@@ -47,7 +47,7 @@ class Workout(db.Model, SerializerMixin):
     description = db.Column(db.String)
     trainer_id = db.Column(db.Integer, db.ForeignKey('trainers.id'))
 
-    trainers = db.relationship('Trainer', backref='workout')
+    trainer = db.relationship('Trainer', backref='workouts')
 
 class Review(db.Model, SerializerMixin):
     __tablename__ = 'reviews'
@@ -60,4 +60,4 @@ class Review(db.Model, SerializerMixin):
     rating = db.Column(db.String)
     text = db.Column(db.String)
 
-    workouts = db.relationship('Workout', backref='workout')
+    workouts = db.relationship('Workout', backref='workouts')
