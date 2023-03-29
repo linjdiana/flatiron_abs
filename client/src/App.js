@@ -31,9 +31,10 @@ function App() {
       setWorkouts(workoutData)
     })
   }, [])
+console.log(workouts)
 
   useEffect(() => {
-    fetch("http://localhost:3000/reviews")
+    fetch("/reviews")
     .then((response) => response.json())
     .then((reviewData) => {
       setReviews(reviewData)
@@ -68,9 +69,6 @@ function App() {
         <Route path='/authentication'>
           <Authentication updateUser={updateUser}/>
         </Route>
-        {/* <Route exact path="/">
-            <Home />
-        </Route> */}
         <Route path='/notfound'>
             <NotFound />
         </Route>

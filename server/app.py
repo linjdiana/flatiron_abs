@@ -6,7 +6,7 @@ from flask_bcrypt import Bcrypt
 from werkzeug.exceptions import NotFound, Unauthorized
 
 from config import db, app, api
-from models import User, Trainer, Workout
+from models import User, Trainer, Workout, Review
 
 # app = Flask(__name__)
 # CORS(app)
@@ -106,6 +106,16 @@ class Workouts(Resource):
         )
         return response
 api.add_resource(Workouts, '/workouts')
+
+class Reviews(Resource):
+    def get(self):
+        review_list = [r.to_dict() for r in Review.query.all()]
+        response = make_response(
+            review_list,
+            200
+        )
+        return response
+api.add_resource(Reviews, '/reviews')
 
 if __name__ == '__main__':
     app.run(port=5555, debug=True)

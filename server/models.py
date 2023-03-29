@@ -37,6 +37,8 @@ class User(db.Model, SerializerMixin):
 class Trainer(db.Model, SerializerMixin):
     __tablename__ = "trainers"
 
+    serialize_rules = ('-workout',) 
+
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String)
     image = db.Column(db.String)
@@ -45,10 +47,25 @@ class Trainer(db.Model, SerializerMixin):
 class Workout(db.Model, SerializerMixin):
     __tablename__ = 'workouts'
 
+    serialize_rules = ('-workout',)
+
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String)
     time = db.Column(db.DateTime, server_default=db.func.now())
     description = db.Column(db.String)
     trainer_id = db.Column(db.Integer, db.ForeignKey('trainers.id'))
 
-    # trainers = db.relationship('Trainer', backref='workout')
+    trainers = db.relationship('Trainer', backref='workout')
+
+class Review(db.Model, SerializerMixin):
+    __tablename__ = 'reviews'
+
+    id = db.Column(db.Integer, primary_key=True)
+    user = db.Column(db.String)
+    workout_id = db.Column(db.Integer, db.ForeignKey('workouts.id'))
+    trainer_id = db.Column(db.Integer, db.ForeignKey('trainers.id'))
+    # should rating be an integer?
+    rating = db.Column(db.String)
+    text = db.Column(db.String)
+
+    workouts = db.relationship('Workout', backref='workout')
