@@ -47,6 +47,7 @@ function AddReview({reviews, workouts}) {
     })
 
     const renderReviews = reviews.map((reviewObj) => {
+            console.log(reviewObj.workout)
         return (
             <ul key={reviewObj.id}>
                 <li>User: {reviewObj.user}</li>
@@ -57,6 +58,7 @@ function AddReview({reviews, workouts}) {
             </ul>
         )
     })
+    console.log(renderReviews)
 
     return (
         <div>
