@@ -26,14 +26,6 @@ with app.app_context():
     workouts.append(w3)
     db.session.add_all(workouts)
     db.session.commit()
-<<<<<<< HEAD
-# from app import app
-# from models import db, User
-
-# user = User(name='diana', password='12345')
-# db.session.add(user)
-# db.session.commit()
-=======
 
     reviews = []
     r1 = Review(user='Bianca', rating='5/5', trainer_id=3, workout_id=3, text="Brett was already an amazing trainer, but her sidekick Kula really kicked my motivation into high gear! 5/5 stars")
@@ -62,4 +54,3 @@ with app.app_context():
     reviews.append(r12)
     db.session.add_all(reviews)
     db.session.commit()
->>>>>>> brett

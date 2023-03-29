@@ -2,13 +2,8 @@ import Reviews from './Reviews'
 import Calendar from './Calendar'
 import TrainerContainer from './TrainerContainer'
 import { useState } from 'react';
-<<<<<<< HEAD
 import Home from './Home';
 import { NavLink, useHistory } from "react-router-dom";
-=======
-import { NavLink, useHistory } from "react-router-dom";
-import Home from './Home';
->>>>>>> brett
 
 function NavBar({updateUser}) {
     const [isNavExpanded, setIsNavExpanded] = useState(false);

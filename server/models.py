@@ -37,11 +37,6 @@ class User(db.Model, SerializerMixin):
     def authenticate(self, password):
         return bcrypt.check_password_hash(self._password_hash, password.encode('utf-8'))
 
-<<<<<<< HEAD
-class Workout(db.Model, SerializerMixin):
-    __tablename__ = 'workouts'
-
-=======
 # from app import bcrypt 
 class Trainer(db.Model, SerializerMixin):
     __tablename__ = "trainers"
@@ -58,15 +53,10 @@ class Workout(db.Model, SerializerMixin):
 
     serialize_rules = ('-workout',)
 
->>>>>>> brett
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String)
     time = db.Column(db.DateTime, server_default=db.func.now())
     description = db.Column(db.String)
-<<<<<<< HEAD
-
-    trainers = db.relationship('Trainer', backref='workout')
-=======
     trainer_id = db.Column(db.Integer, db.ForeignKey('trainers.id'))
 
     trainers = db.relationship('Trainer', backref='workout')
@@ -83,4 +73,3 @@ class Review(db.Model, SerializerMixin):
     text = db.Column(db.String)
 
     workouts = db.relationship('Workout', backref='workout')
->>>>>>> brett
