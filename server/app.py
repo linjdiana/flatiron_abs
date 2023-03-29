@@ -6,14 +6,34 @@ from flask_bcrypt import Bcrypt
 from werkzeug.exceptions import NotFound, Unauthorized
 
 from config import db, app, api
+<<<<<<< HEAD
 from models import User
 
+=======
+from models import User, Trainer, Workout, Review
+
+# app = Flask(__name__)
+# CORS(app)
+# bcrypt = Bcrypt(app)
+
+# app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///app.db'
+# app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+# app.json.compact = False
+
+# app.secret_key = b'Y\xf1Xz\x00\xad|eQ\x80t \xca\x1a\x10K'
+
+# migrate = Migrate(app, db)
+# db.init_app(app)
+
+api = Api(app)
+>>>>>>> brett
 
 # class Index(Resource):
 #     def get(self):
 #         return '<h1>hi</h1>'
 # api.add_resource(Index, '/')
 
+<<<<<<< HEAD
 class Trainers(Resource):
     def get(self):
         trainer_list = [t.to_dict() for t in Trainer.query.all()]
@@ -33,6 +53,8 @@ class Workouts(Resource):
         )
         return response
 api.add_resource(Workouts, '/workouts')
+=======
+>>>>>>> brett
 class Signup(Resource):
     def post(self):
         form_json = request.get_json()
@@ -92,6 +114,38 @@ def handle_not_found(e):
         404
     )
     return response
+<<<<<<< HEAD
+=======
+class Trainers(Resource):
+    def get(self):
+        trainer_list = [t.to_dict() for t in Trainer.query.all()]
+        response = make_response(
+            trainer_list,
+            200
+        )
+        return response
+api.add_resource(Trainers, '/trainers')
+
+class Workouts(Resource):
+    def get(self):
+        workout_list = [w.to_dict() for w in Workout.query.all()]
+        response = make_response(
+            workout_list,
+            200
+        )
+        return response
+api.add_resource(Workouts, '/workouts')
+
+class Reviews(Resource):
+    def get(self):
+        review_list = [r.to_dict() for r in Review.query.all()]
+        response = make_response(
+            review_list,
+            200
+        )
+        return response
+api.add_resource(Reviews, '/reviews')
+>>>>>>> brett
 
 if __name__ == '__main__':
-    app.run(port=5555)
+    app.run(port=5555, debug=True)

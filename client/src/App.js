@@ -7,12 +7,20 @@ import Home from "./Components/Home";
 import NavBar from "./Components/NavBar";
 import NotFound from './Components/NotFound';
 import Calendar from './Components/Calendar';
+<<<<<<< HEAD
+=======
+import AddReview from './Components/AddReview';
+>>>>>>> brett
 import { useState, useEffect } from 'react';
 
 function App() {
   const [trainers, setTrainers ] = useState([]);
   const [user, setUser] = useState(null);
   const [ workouts, setWorkouts ] = useState([]);
+<<<<<<< HEAD
+=======
+  const [ reviews, setReviews ] = useState([])
+>>>>>>> brett
 
   useEffect(() => {
     fetch("/trainers")
@@ -29,7 +37,20 @@ function App() {
       setWorkouts(workoutData)
     })
   }, [])
+<<<<<<< HEAD
 
+=======
+console.log(workouts)
+
+  useEffect(() => {
+    fetch("/reviews")
+    .then((response) => response.json())
+    .then((reviewData) => {
+      setReviews(reviewData)
+    })
+  }, [])
+
+>>>>>>> brett
 
   const updateUser = (user) => setUser(user)
   if(!user) return (
@@ -43,6 +64,10 @@ function App() {
   return (
     <div className="App">
       <div className="container">
+<<<<<<< HEAD
+=======
+
+>>>>>>> brett
       <NavBar />
       <Switch>
         <Route exact path='/'>
@@ -57,12 +82,21 @@ function App() {
         <Route path='/authentication'>
           <Authentication updateUser={updateUser}/>
         </Route>
+<<<<<<< HEAD
         {/* <Route exact path="/">
             <Home />
         </Route> */}
         <Route path='/notfound'>
             <NotFound />
         </Route>
+=======
+        <Route path='/notfound'>
+            <NotFound />
+        </Route>
+        <Route path='/reviews'>
+          <AddReview reviews={reviews} />
+        </Route>
+>>>>>>> brett
       </Switch>
       </div>
     </div>

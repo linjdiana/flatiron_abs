@@ -11,6 +11,7 @@ class Trainer(db.Model, SerializerMixin):
     id = db.Column(db.Integer, primary_key=True)
     workout_id = db.Column(db.Integer, db.ForeignKey('workouts.id'))
     name = db.Column(db.String)
+<<<<<<< HEAD
     image = db.Column(db.String)
     bio = db.Column(db.String)
 
@@ -18,6 +19,8 @@ class User(db.Model, SerializerMixin):
     __tablename__ = 'users'
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String)
+=======
+>>>>>>> brett
     email = db.Column(db.String)
     _password_hash = db.Column(db.String)
     # admin = db.Column(db.String, default=False)
@@ -34,12 +37,50 @@ class User(db.Model, SerializerMixin):
     def authenticate(self, password):
         return bcrypt.check_password_hash(self._password_hash, password.encode('utf-8'))
 
+<<<<<<< HEAD
 class Workout(db.Model, SerializerMixin):
     __tablename__ = 'workouts'
 
+=======
+# from app import bcrypt 
+class Trainer(db.Model, SerializerMixin):
+    __tablename__ = "trainers"
+
+    serialize_rules = ('-workout',) 
+
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String)
+    image = db.Column(db.String)
+    bio = db.Column(db.String)
+
+class Workout(db.Model, SerializerMixin):
+    __tablename__ = 'workouts'
+
+    serialize_rules = ('-workout',)
+
+>>>>>>> brett
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String)
     time = db.Column(db.DateTime, server_default=db.func.now())
     description = db.Column(db.String)
+<<<<<<< HEAD
 
     trainers = db.relationship('Trainer', backref='workout')
+=======
+    trainer_id = db.Column(db.Integer, db.ForeignKey('trainers.id'))
+
+    trainers = db.relationship('Trainer', backref='workout')
+
+class Review(db.Model, SerializerMixin):
+    __tablename__ = 'reviews'
+
+    id = db.Column(db.Integer, primary_key=True)
+    user = db.Column(db.String)
+    workout_id = db.Column(db.Integer, db.ForeignKey('workouts.id'))
+    trainer_id = db.Column(db.Integer, db.ForeignKey('trainers.id'))
+    # should rating be an integer?
+    rating = db.Column(db.String)
+    text = db.Column(db.String)
+
+    workouts = db.relationship('Workout', backref='workout')
+>>>>>>> brett
