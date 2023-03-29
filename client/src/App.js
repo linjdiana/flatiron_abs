@@ -7,13 +7,14 @@ import Home from "./Components/Home";
 import NavBar from "./Components/NavBar";
 import NotFound from './Components/NotFound';
 import Calendar from './Components/Calendar';
+import AddReview from './Components/AddReview';
 import { useState, useEffect } from 'react';
-import Home from './Components/Home';
 
 function App() {
   const [trainers, setTrainers ] = useState([]);
   const [user, setUser] = useState(null);
   const [ workouts, setWorkouts ] = useState([]);
+  const [ reviews, setReviews ] = useState([])
 
   useEffect(() => {
     fetch("/trainers")
@@ -31,6 +32,15 @@ function App() {
     })
   }, [])
 
+  useEffect(() => {
+    fetch("/reviews")
+    .then((response) => response.json())
+    .then((reviewData) => {
+      setReviews(reviewData)
+    })
+  }, [])
+
+
 
   const updateUser = (user) => setUser(user)
   if(!user) return (
@@ -44,10 +54,7 @@ function App() {
   return (
     <div className="App">
       <div className="container">
-<<<<<<< HEAD
       <NavBar />
-=======
->>>>>>> origin/topher
       <Switch>
         <Route exact path='/'>
           <Home />
@@ -66,6 +73,9 @@ function App() {
         </Route>
         <Route path='/notfound'>
             <NotFound />
+        </Route>
+        <Route path='/reviews'>
+          <AddReview reviews={reviews} />
         </Route>
       </Switch>
       </div>

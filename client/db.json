@@ -1,45 +1,80 @@
+
+
 {
     "trainers": [
-        {
-            "id": 1,
-            "name": "Topher",
-            "image": "https://www.shutterstock.com/image-photo/personal-trainer-arms-crossed-gym-260nw-493318507.jpg",
-            "bio": "Cool Dude"
-        },
-        {
-            "id": 2,
-            "name": "Diana",
-            "image": "https://www.shutterstock.com/image-photo/personal-trainer-arms-crossed-gym-260nw-493318507.jpg",
-            "bio": "Cool Chick"
-        },
-        {
-            "id": 1,
-            "name": "Brett",
-            "image": "https://www.shutterstock.com/image-photo/personal-trainer-arms-crossed-gym-260nw-493318507.jpg",
-            "bio": "The Coolest"
-        }
+      {
+        "id": 1,
+        "name": "Topher",
+        "image": "https://www.shutterstock.com/image-photo/personal-trainer-arms-crossed-gym-260nw-493318507.jpg",
+        "bio": "Cool Dude"
+      },
+      {
+        "id": 2,
+        "name": "Diana",
+        "image": "https://www.shutterstock.com/image-photo/personal-trainer-arms-crossed-gym-260nw-493318507.jpg",
+        "bio": "Cool Chick"
+      },
+      {
+        "id": 1,
+        "name": "Brett",
+        "image": "https://www.shutterstock.com/image-photo/personal-trainer-arms-crossed-gym-260nw-493318507.jpg",
+        "bio": "The Coolest"
+      }
     ],
     "workouts": [
-        {
-            "id": 1,
-            "time": 8,
-            "trainer": "Topher",
-            "name": "Get Yoked",
-            "description": "Big time swole sesh."
-        },
-        {
-            "id": 2,
-            "time": 9,
-            "trainer": "Diana",
-            "name": "Running, but like a lot",
-            "description": "Diana decides to run a big, long run, but then decides it wasn't long enough, then she makes you go on another!"
-        },
-        {
-            "id": 3,
-            "time": 10,
-            "trainer": "Brett",
-            "name": "Spikeball/no mercy",
-            "description": "Takes spikeball way too seriously. Turns it into a contact sport."
-        }
+      {
+        "id": 1,
+        "time": 8,
+        "trainer": "Topher",
+        "name": "Get Yoked",
+        "description": "Big time swole sesh."
+      },
+      {
+        "id": 2,
+        "time": 9,
+        "trainer": "Diana",
+        "name": "Running, but like a lot",
+        "description": "Diana decides to run a big, long run, but then decides it wasn't long enough, then she makes you go on another!"
+      },
+      {
+        "id": 3,
+        "time": 10,
+        "trainer": "Brett",
+        "name": "Spikeball/no mercy",
+        "description": "Takes spikeball way too seriously. Turns it into a contact sport."
+      }
+    ],
+    "reviews": [
+      {
+        "id": 1,
+        "user": "This Guy",
+        "workout": "Get Yoked",
+        "rating": "5/5",
+        "text": "Great class!"
+      },
+      {
+        "workout": "Get Yoked",
+        "rating": "5/5",
+        "text": "yay",
+        "id": 2
+      },
+      {
+        "workout": "Get Yoked",
+        "rating": "5/5",
+        "text": "woo",
+        "id": 3
+      },
+      {
+        "workout": "Get Yoked",
+        "rating": "5/5",
+        "text": " Yayayay",
+        "id": 4
+      },
+      {
+        "workout": "running",
+        "rating": "4/5",
+        "text": " a lot of running",
+        "id": 5
+      }
     ]
-}
+  }

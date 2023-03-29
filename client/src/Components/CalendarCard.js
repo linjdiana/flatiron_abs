@@ -15,10 +15,10 @@ function CalendarCard({ workoutObj }) {
         <span class="calendarcard">
             <h2>{name}</h2>
             <h4>{time}</h4>
-            <p>{trainer}</p>
+            <p>{trainer.name}</p>
             <button className="button-16" onClick={handleClick}>{buttonText}</button>
             <p>{descriptionText}</p>
-            <button className="workoutbutton">Work out with {trainer}</button>
+            <button className="workoutbutton">Work out with {trainer.name}</button>
             <br></br>
             <br></br>
             <br></br>
