@@ -88,8 +88,8 @@ function Calendar({ workouts }) {
                 <input type="submit" />
             </form>
             <br></br>
-            <h3>Scheduled Sign Ups</h3>
-            {renderSignups}
+            {/* <h3>Scheduled Sign Ups</h3>
+            {renderSignups} */}
         </div>
     )
 }

@@ -1,7 +1,6 @@
 from faker import Faker
 from app import app
 from models import db, Trainer, Workout, Review, Signup
-from models import db, Trainer, Workout, Review, Signup
 
 fake = Faker()
 
@@ -17,11 +16,11 @@ with app.app_context():
     trainers.append(t3)
     db.session.add_all(trainers)
     db.session.commit()
-
+    
     workouts = []
-    w1 = Workout(name='Curls', description='Gettin swoll', trainer_id=1)
-    w2 = Workout(name='Running. But, like, A LOT', description="Diana takes you on a big, long run. When you finish, she'll decide it wasn't long enough and take you on another.", trainer_id=2)
-    w3 = Workout(name='Spikeball. With no mercy.', description='Spikeball taken way too seriously. A full contact sport', trainer_id=3)
+    w1 = Workout(name='Curls', description='Gettin swoll', trainer_id=1, time="8PM")
+    w2 = Workout(name='Running. But, like, A LOT', description="Diana takes you on a big, long run. When you finish, she'll decide it wasn't long enough and take you on another.", trainer_id=2, time="10AM")
+    w3 = Workout(name='Spikeball. With no mercy.', description='Spikeball taken way too seriously. A full contact sport', trainer_id=3, time="7AM")
     workouts.append(w1)
     workouts.append(w2)
     workouts.append(w3)

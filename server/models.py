@@ -46,7 +46,7 @@ class Workout(db.Model, SerializerMixin):
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String)
-    time = db.Column(db.DateTime, server_default=db.func.now())
+    time = db.Column(db.String)
     description = db.Column(db.String)
     trainer_id = db.Column(db.Integer, db.ForeignKey('trainers.id'))
 
@@ -65,56 +65,17 @@ class Review(db.Model, SerializerMixin):
     user = db.Column(db.String)
     workout_id = db.Column(db.Integer, db.ForeignKey('workouts.id'))
     trainer_id = db.Column(db.Integer, db.ForeignKey('trainers.id'))
-    # should rating be an integer?
     rating = db.Column(db.String)
     text = db.Column(db.String)
 
-
     workout = db.relationship('Workout', back_populates='review')
-    # workout = db.relationship('Workout', backref='review')
 
 class Signup(db.Model, SerializerMixin):
     __tablename__  = 'signups'
 
-<<<<<<< HEAD
-    serialize_rules = ('-review', '-trainer', '-workout1', '-workout2', '-workout3', '-signup')  
-=======
-    # serialize_rules = ('-review', '-trainer', '-workout1', '-workout2', '-workout3', '-signup')  
-    # serialize_rules = ('-review', '-trainer', '-workout1', '-workout2', '-workout3') 
     serialize_rules = ('-trainer', '-workout.signups') 
->>>>>>> brett
 
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     workout_id = db.Column(db.Integer, db.ForeignKey('workouts.id'))
-<<<<<<< HEAD
-    trainer_id = db.Column(db.Integer, db.ForeignKey('trainers.id'))
-
-    workout3 = db.relationship('Workout', back_populates='signup')
-    # workout = db.relationship('Workout', backref='signup')
-    # user = db.relationship('User', backref='signup')
-    # review = db.relationship('Review', backref='signup')
-=======
-    # trainer_id = db.Column(db.Integer, db.ForeignKey('trainers.id'))
-
-    # workout3 = db.relationship('Workout', back_populates='signups')
     workout = db.relationship('Workout', backref='signups')
-    # user = db.relationship('User', backref='signup')
-    # review = db.relationship('Review', backref='signup')
-    
->>>>>>> brett
-
-class Signup(db.Model, SerializerMixin):
-    __tablename__  = 'signups'
-
-    serialize_rules = ('-review', '-trainer', '-workout1', '-workout2', '-workout3', '-signup')  
-
-    id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
-    workout_id = db.Column(db.Integer, db.ForeignKey('workouts.id'))
-    trainer_id = db.Column(db.Integer, db.ForeignKey('trainers.id'))
-
-    workout3 = db.relationship('Workout', back_populates='signup')
-    # workout = db.relationship('Workout', backref='signup')
-    # user = db.relationship('User', backref='signup')
-    # review = db.relationship('Review', backref='signup')
