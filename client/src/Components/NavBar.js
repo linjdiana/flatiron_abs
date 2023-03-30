@@ -3,6 +3,7 @@ import TrainerContainer from './TrainerContainer'
 import { useState } from 'react';
 import { NavLink, useHistory } from "react-router-dom";
 
+
 function NavBar({updateUser}) {
     const [isNavExpanded, setIsNavExpanded] = useState(false);
     const history = useHistory();
@@ -18,6 +19,7 @@ function NavBar({updateUser}) {
    }
 
     return (
+      
       <nav className="navigation">
         <a href="/" className="brand-name">
           <NavLink exact to='/'>
@@ -69,7 +71,8 @@ function NavBar({updateUser}) {
           </ul>
         </div>
       </nav>
-    );
+  
+);
   }
   
 export default NavBar

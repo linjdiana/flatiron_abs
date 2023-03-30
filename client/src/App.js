@@ -16,13 +16,13 @@ function App() {
   const [user, setUser] = useState(null);
   const [ workouts, setWorkouts ] = useState([]);
   const [ reviews, setReviews ] = useState([])
-  const [ signUps, setSignUps ] = useState([])
+  // const [ signUps, setSignUps ] = useState([])
     
-  useEffect(() => {
-      fetch("http://localhost:3000/signups")
-      .then(response => response.json())
-      .then(signUpData => setSignUps(signUpData)) 
-  }, [])
+  // useEffect(() => {
+  //     fetch("http://localhost:3000/signups")
+  //     .then(response => response.json())
+  //     .then(signUpData => setSignUps(signUpData)) 
+  // }, [])
 
   useEffect(() => {
     fetch("/trainers")
@@ -48,6 +48,7 @@ function App() {
     })
   }, [])
 
+  console.log(reviews)
 
 
   const updateUser = (user) => setUser(user)
@@ -70,10 +71,10 @@ function App() {
           <TrainerContainer trainers={trainers} />
         </Route>
         <Route path="/workouts" >
-          <Calendar workouts={workouts} signUps={signUps} setSignUps={setSignUps} />
+          <Calendar workouts={workouts} />
         </Route>
         <Route path="/signups" >
-          <Signups signUps={signUps} setSignUps={setSignUps} />
+          <Signups />
         </Route>
         <Route path='/authentication'>
           <Authentication updateUser={updateUser}/>

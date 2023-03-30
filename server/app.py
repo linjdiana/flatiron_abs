@@ -8,6 +8,8 @@ from models import User, Trainer, Workout, Review, Signup
 def index():
     return '<h1>hi</h1>'
 
+api = Api(app)
+
 class Signups(Resource):
     def get(self):
         signup_list = [s.to_dict() for s in Signup.query.all()]
@@ -16,6 +18,23 @@ class Signups(Resource):
             200
         )
         return response
+    
+    def post(self):
+        data=request.get_json()
+        new_sign_up = Signup(
+            workout_id=data['workout_id']
+        )
+        db.session.add(new_sign_up)
+        db.session.commit()
+
+        response = make_response(
+            new_sign_up.to_dict(),
+            201
+        )
+        return response
+api.add_resource(Signups, '/signup')
+
+class AddUser(Resource):
     def post(self):
         form_json = request.get_json()
         new_user = User(name=form_json['name'], email=form_json['email'])
@@ -28,7 +47,7 @@ class Signups(Resource):
             201
         )
         return response
-api.add_resource(Signup, '/signup')
+api.add_resource(AddUser, '/adduser')
 
 class Login(Resource):
     def post(self):
@@ -122,8 +141,8 @@ class Reviews(Resource):
         data=request.get_json()
         new_review = Review(
             user=data['user'],
-            workout_id=data['workout_id'],
             rating=data['rating'],
+            workout_id=data['workout_id'],
             text=data['text']
         )
         db.session.add(new_review)

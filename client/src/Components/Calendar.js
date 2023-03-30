@@ -5,11 +5,22 @@ import { useState, useEffect } from "react";
 import {useFormik } from "formik";
 import * as yup from "yup";
 
-function Calendar({ workouts, signUps, setSignUps }) {
+function Calendar({ workouts }) {
     console.log(workouts)
     const [signUpClass, setSignUpClass] = useState([])
+    const [ signUps, setSignUps ] = useState([])
+    
     const history = useHistory()
     const addSignUpClass = (signup) => setSignUpClass(current => [...current, signup])
+
+    
+    useEffect(() => {
+        fetch("/signup")
+        .then(response => response.json())
+        .then(signUpData => setSignUps(signUpData)) 
+    }, [])
+    
+
 
     const formSchema = yup.object().shape({
         user: yup.string().required()
@@ -23,6 +34,20 @@ function Calendar({ workouts, signUps, setSignUps }) {
         validationSchema: formSchema,
         onSubmit: (values) => {
             console.log(values)
+            fetch("/signup", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(values),
+            }).then((response) => {
+                if(response.ok) {
+                    response.json().then(signup => {
+                        addSignUpClass(signup)
+                        history.push("/signup")
+                    })
+                }
+            })
         }
     })
 
@@ -35,6 +60,17 @@ function Calendar({ workouts, signUps, setSignUps }) {
     const renderWorkouts = workouts.map(workoutObj => {
         return <CalendarCard key={workouts.id} workoutObj={workoutObj} signUps={signUps} setSignUps={setSignUps} />
     });
+
+    const renderSignups = signUps.map((signupObj) => {
+        console.log(signupObj.workout.time)
+        return (
+            <ul key={signupObj.id}>
+               <li>Scheduled Workout: {signupObj.workout.time} {signupObj.workout.name} with {signupObj.workout.trainer.name}</li>
+              
+            </ul>
+        )
+    })
+    
 
     return (
         <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center' }}>
@@ -51,6 +87,9 @@ function Calendar({ workouts, signUps, setSignUps }) {
                 <br></br>
                 <input type="submit" />
             </form>
+            <br></br>
+            <h3>Scheduled Sign Ups</h3>
+            {renderSignups}
         </div>
     )
 }
