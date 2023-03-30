@@ -10,33 +10,7 @@ function CalendarCard({ workoutObj, signUps, setSignUps }) {
 
     function handleClick() {
         setShowDescription((currentDescription) => !currentDescription)
-    }
-
-    // const signUpIds = signUps.map(signUp => {
-    //     return signUp.id
-    // })
-
-    // useEffect(() => {
-    //     function checkSignedUp() {
-    //         if (signUpIds.includes(signUps.id))
-    //         console.log("signed up!")
-    //         } else {
-    //         console.log("not signed up!")
-    //     }
-    // })
-
-
-    // function handleSignUp() {
-    //     fetch("http://localhost:3000/signups", {
-    //         method: "POST",
-    //         headers: {
-    //             "content-type": "application/json"
-    //         },
-    //         body: JSON.stringify(signUps)
-    //     })
-    //     .then(response => response.json())
-    //     .then(signUps => console.log(signUps))
-    // }    
+    } 
 
     const descriptionText = showDescription ? <p>{description}</p> : null;
     const buttonText = showDescription ? "Hide Description" : "Show Description"
