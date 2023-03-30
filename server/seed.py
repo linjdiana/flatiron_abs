@@ -8,9 +8,9 @@ with app.app_context():
     Trainer.query.delete()
 
     trainers = []
-    t1 = Trainer(name='Topher', image='https://github.com/linjdiana/flatiron_abs/blob/topher/images/chad.jpeg?raw=true', bio='Cool dude')
-    t2 = Trainer(name='Diana', image='https://github.com/linjdiana/flatiron_abs/blob/topher/images/wonderwoman.jpg?raw=true', bio='Cool chick')
-    t3 = Trainer(name='Brett', image='https://github.com/linjdiana/flatiron_abs/blob/topher/images/We_Can_Do_It__qhtlbj.jpg?raw=true', bio='The coolest')
+    t1 = Trainer(name='Topher', image='https://github.com/linjdiana/flatiron_abs/blob/topher/images/chad.jpeg?raw=true', bio='Topher may look at himself in the mirror a lot, but his workouts sure will get you sweating like crazy. Depending on his mood for the day, he’ll either have you lift a partner of your choosing, or do yoga facing the mirror. You’ll usually catch him eating a bowl of mac & cheese with bacon fresh out of the oven (yes, the gym bought an oven just for him) while flexing his muscles when he thinks you’re not looking. ')
+    t2 = Trainer(name='Diana', image='https://github.com/linjdiana/flatiron_abs/blob/topher/images/wonderwoman.jpg?raw=true', bio='Diana teaches a Barry’s style running class where you get yelled at to do one minute sprint intervals, followed by a 30 second break where first-timers usually leave the class after about the 6th interval. Long-time students of Diana usually spend these 30 seconds catching their breath and complaining to each other about how they’re never coming back again. ')
+    t3 = Trainer(name='Brett', image='https://github.com/linjdiana/flatiron_abs/blob/topher/images/We_Can_Do_It__qhtlbj.jpg?raw=true', bio='Brett’s workouts are always early in the morning, but don’t worry! She’s always got her sweet pup Kula with her, so you’ll never dread these early mornings. She makes you do 20 push-ups for every minute you’re late, so Brett’s classes have the highest no-show rate we’ve ever seen, which is why we allow for 10 sign-ups for her classes of 5. ')
     trainers.append(t1)
     trainers.append(t2)
     trainers.append(t3)
