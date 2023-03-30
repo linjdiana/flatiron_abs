@@ -5,11 +5,21 @@ import { useState, useEffect } from "react";
 import {useFormik } from "formik";
 import * as yup from "yup";
 
-function Calendar({ workouts, signUps, setSignUps }) {
+function Calendar({ workouts }) {
     console.log(workouts)
     const [signUpClass, setSignUpClass] = useState([])
+    const [ signUps, setSignUps ] = useState([])
+    
     const history = useHistory()
     const addSignUpClass = (signup) => setSignUpClass(current => [...current, signup])
+
+    
+    useEffect(() => {
+        fetch("http://localhost:3000/signups")
+        .then(response => response.json())
+        .then(signUpData => setSignUps(signUpData)) 
+    }, [])
+
 
     const formSchema = yup.object().shape({
         user: yup.string().required()
@@ -35,6 +45,8 @@ function Calendar({ workouts, signUps, setSignUps }) {
     const renderWorkouts = workouts.map(workoutObj => {
         return <CalendarCard key={workouts.id} workoutObj={workoutObj} signUps={signUps} setSignUps={setSignUps} />
     });
+
+    
 
     return (
         <div>
