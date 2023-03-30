@@ -65,7 +65,7 @@ function NavBar({updateUser}) {
             <li>
                 <NavLink exact to="/authentication">Log In/Signup</NavLink>
             </li>
-            <li onClick={handleLogout}> Logout </li>
+            <li onClick={handleLogout}><NavLink exact to="/logout">Logout</NavLink></li>
           </ul>
         </div>
       </nav>

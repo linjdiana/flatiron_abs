@@ -2,13 +2,20 @@ from flask import request, make_response, jsonify, session, abort
 from flask_restful import Resource, Api
 from werkzeug.exceptions import NotFound, Unauthorized
 from config import db, app, api
-from models import User, Trainer, Workout, Review
+from models import User, Trainer, Workout, Review, Signup
 
 @app.route('/')
 def index():
     return '<h1>hi</h1>'
 
-class Signup(Resource):
+class Signups(Resource):
+    def get(self):
+        signup_list = [s.to_dict() for s in Signup.query.all()]
+        response = make_response(
+            signup_list,
+            200
+        )
+        return response
     def post(self):
         form_json = request.get_json()
         new_user = User(name=form_json['name'], email=form_json['email'])

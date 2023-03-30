@@ -67,3 +67,18 @@ class Review(db.Model, SerializerMixin):
     text = db.Column(db.String)
 
     workout = db.relationship('Workout', backref='workout')
+
+class Signup(db.Model, SerializerMixin):
+    __tablename__  = 'signups'
+
+    serialize_rules = ('-review', '-trainer', '-workout1', '-workout2', '-workout3', '-signup')  
+
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    workout_id = db.Column(db.Integer, db.ForeignKey('workouts.id'))
+    trainer_id = db.Column(db.Integer, db.ForeignKey('trainers.id'))
+
+    workout3 = db.relationship('Workout', back_populates='signup')
+    # workout = db.relationship('Workout', backref='signup')
+    # user = db.relationship('User', backref='signup')
+    # review = db.relationship('Review', backref='signup')

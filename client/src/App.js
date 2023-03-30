@@ -63,7 +63,7 @@ function App() {
   return (
     <div className="App">
       <div className="container">
-      <NavBar />
+      <NavBar updateUser={updateUser}/>
       <Switch>
         <Route exact path='/'>
           <Home />
