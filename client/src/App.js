@@ -69,14 +69,11 @@ function App() {
         <Route path='/authentication'>
           <Authentication updateUser={updateUser}/>
         </Route>
-        <Route exact path="/">
-            <Home />
-        </Route>
         <Route path='/notfound'>
             <NotFound />
         </Route>
         <Route path='/reviews'>
-          <AddReview reviews={reviews} />
+          <AddReview reviews={reviews} workouts={workouts} />
         </Route>
       </Switch>
       </div>

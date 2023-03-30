@@ -1,6 +1,7 @@
 from faker import Faker
 from app import app
 from models import db, Trainer, Workout, Review
+from models import db, Trainer, Workout, Review
 
 fake = Faker()
 

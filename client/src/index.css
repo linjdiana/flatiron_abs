@@ -48,7 +48,7 @@ code {
   outline: none;
 }
 
-.workoutbutton {
+/* .workoutbutton {
   outline: 0;
   grid-gap: 8px;
   align-items: center;
@@ -74,7 +74,7 @@ code {
 }
 .workoutbutton:focus-visible{
     outline-offset: 1px;
-}
+} */
 
 .calendarcard {
   min-height: 300;
@@ -155,11 +155,11 @@ code {
 .trainercard h1 {
   position: absolute;
   top: 12px; 
-  left: 14px; /* 70% of 20px */
+  left: 14px; 
   margin: 0;
   padding: 0;
   color: black;
-  font-size: 38px; /* 70% of 60px */
+  font-size: 38px; 
   font-weight: 100;
   line-height: 1;
   opacity: 1;
@@ -169,8 +169,8 @@ code {
 }
 
 .trainercard img {
-  width: 259px; /* 70% of 375px */
-  height: 280px; /* 70% of 400px */
+  width: 259px; 
+  height: 280px; 
   object-fit: cover;
   transition: 0.25s;
   opacity: 0.9;
@@ -179,7 +179,7 @@ code {
 .trainercard figcaption {
   position: absolute;
   bottom: 0;
-  padding: 14px; /* 70% of 20px */
+  padding: 14px;
   background-color: white;
   color: black;
   width: 100%;
@@ -187,7 +187,7 @@ code {
 }
 
 .trainercard p {
-  font-size: 9.8px; /* 70% of 14px */
+  font-size: 9.8px; 
   line-height: 1.75;
 }
 
@@ -210,15 +210,15 @@ code {
   box-sizing: border-box;
   flex-direction: row;
   overflow-y: scroll;
-  justify-content: center; /* add this */
+  justify-content: center; 
 }
 
 .reviewcard {
   overflow: hidden;
-  padding: 2rem; /* Decrease padding */
+  padding: 2rem; 
   margin: 1rem;
   width: 23rem;
-  height: auto; /* Remove min-height */
+  height: auto; 
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
   background: white;
   opacity: 0.82; 
@@ -226,7 +226,7 @@ code {
   align-items: flex-start;
   justify-content: center;
   flex-direction: column;
-  border-radius: 5px; /* Add border radius */
+  border-radius: 5px;
 }
 
 

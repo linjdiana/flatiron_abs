@@ -65,7 +65,6 @@ def handle_not_found(e):
         404
     )
     return response
-
 class Trainers(Resource):
     def get(self):
         trainer_list = [t.to_dict() for t in Trainer.query.all()]
@@ -84,6 +83,23 @@ class Workouts(Resource):
             200
         )
         return response
+    
+    # def post(self):
+    #     data=request.get_json()
+    #     new_review = Review(
+    #         user=data['user'],
+    #         workout=data['workout'],
+    #         rating=data['rating'],
+    #         text=data['text']
+    #     )
+    #     db.session.add(new_review)
+    #     db.session.commit()
+
+    #     response = make_response(
+    #         new_review.to_dict(),
+    #         201
+    #     )
+    #     return response
 api.add_resource(Workouts, '/workouts')
 
 class Reviews(Resource):
@@ -94,7 +110,24 @@ class Reviews(Resource):
             200
         )
         return response
+    
+    def post(self):
+        data=request.get_json()
+        new_review = Review(
+            user=data['user'],
+            workout_id=data['workout_id'],
+            rating=data['rating'],
+            text=data['text']
+        )
+        db.session.add(new_review)
+        db.session.commit()
+
+        response = make_response(
+            new_review.to_dict(),
+            201
+        )
+        return response
 api.add_resource(Reviews, '/reviews')
 
 if __name__ == '__main__':
-    app.run(port=5555)
+    app.run(port=5555, debug=True)
