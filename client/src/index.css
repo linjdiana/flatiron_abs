@@ -245,5 +245,21 @@ code {
   font-style: italic;
   color: black;
   align-self: flex-end;
-  
+}
+
+.reviewform {
+  background-image: url("https://img2.10bestmedia.com/Images/Photos/380636/GettyImages-611102194_54_990x660.jpg") ;
+  opacity: 0.8;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  padding: 1.5rem;
+  box-shadow: 0 -0.5rem 1rem rgba(0 0 0 / 0.15);
+  border-radius: 20px;
+}
+
+.reviewform label {
+  width: 300px;
 }

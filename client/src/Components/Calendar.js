@@ -40,7 +40,7 @@ function Calendar({ workouts, signUps, setSignUps }) {
         <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center' }}>
             {renderWorkouts}
             <br></br><br></br>
-            <form onSubmit={formik.handleSubmit}>
+            <form class="reviewform" onSubmit={formik.handleSubmit}>
                 <label>User: </label>
                 <input type='text' name='user' value={formik.values.user} onChange={formik.handleChange} />
                 <br></br>

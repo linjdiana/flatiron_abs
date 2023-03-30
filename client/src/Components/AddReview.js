@@ -55,9 +55,9 @@ function AddReview({reviews}) {
       return (
         <div>
           <br></br> <br></br>
-          <form onSubmit={formik.handleSubmit}>
-            <label>
-              Workout:
+          <form class="reviewform" onSubmit={formik.handleSubmit}>
+            <label class="workout">
+              Workout: <br />
               <select
                 name="workout"
                 value={formik.values.workout}
@@ -70,7 +70,6 @@ function AddReview({reviews}) {
             </label>
             <br></br>
             <label>
-              Rating:
               <select
                 name="rating"
                 value={formik.values.rating}
