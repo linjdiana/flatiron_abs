@@ -62,6 +62,9 @@ function NavBar({updateUser}) {
               <NavLink exact to="/reviews">Reviews</NavLink>
             </li>
             <li>
+              <NavLink exact to="/signups">Sign Ups</NavLink>
+            </li>
+            <li>
                 <NavLink exact to="/authentication">Log In/Signup</NavLink>
             </li>
             <li onClick={handleLogout}> Logout </li>

@@ -1,13 +1,40 @@
 import { useState } from "react"
 
-function CalendarCard({ workoutObj }) {
+function CalendarCard({ workoutObj, signUps, setSignUps }) {
     const { id, time, trainer, name, description } = workoutObj
     const [showDescription, setShowDescription] = useState(false)
+    const [isSignedUp, setIsSignedUp] = useState(false)
     // console.log(trainers.name)
 
     function handleClick() {
         setShowDescription((currentDescription) => !currentDescription)
     }
+
+    // const signUpIds = signUps.map(signUp => {
+    //     return signUp.id
+    // })
+
+    // useEffect(() => {
+    //     function checkSignedUp() {
+    //         if (signUpIds.includes(signUps.id))
+    //         console.log("signed up!")
+    //         } else {
+    //         console.log("not signed up!")
+    //     }
+    // })
+
+
+    function handleSignUp() {
+        fetch("http://localhost:3000/signups", {
+            method: "POST",
+            headers: {
+                "content-type": "application/json"
+            },
+            body: JSON.stringify(signUps)
+        })
+        .then(response => response.json())
+        .then(signUps => console.log(signUps))
+    }    
 
     const descriptionText = showDescription ? <p>{description}</p> : null;
     const buttonText = showDescription ? "Hide Description" : "Show Description"
@@ -21,7 +48,7 @@ function CalendarCard({ workoutObj }) {
             <p>{trainer.name}</p>
             <button onClick={handleClick}>{buttonText}</button>
             <p>{descriptionText}</p>
-            <button>Sign Up for {name} with {trainer.name}</button>
+            {/* <button onClick={handleSignUp}>Sign Up for {name} with {trainer.name}</button> */}
             <br></br>
             <br></br>
             <br></br>

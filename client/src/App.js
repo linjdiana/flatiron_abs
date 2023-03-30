@@ -9,12 +9,20 @@ import NotFound from './Components/NotFound';
 import Calendar from './Components/Calendar';
 import AddReview from './Components/AddReview';
 import { useState, useEffect } from 'react';
+import Signups from './Components/Signups';
 
 function App() {
   const [trainers, setTrainers ] = useState([]);
   const [user, setUser] = useState(null);
   const [ workouts, setWorkouts ] = useState([]);
   const [ reviews, setReviews ] = useState([])
+  const [ signUps, setSignUps ] = useState([])
+    
+  useEffect(() => {
+      fetch("http://localhost:3000/signups")
+      .then(response => response.json())
+      .then(signUpData => setSignUps(signUpData)) 
+  }, [])
 
   useEffect(() => {
     fetch("/trainers")
@@ -63,7 +71,10 @@ console.log(workouts)
           <TrainerContainer trainers={trainers} />
         </Route>
         <Route path="/workouts" >
-          <Calendar workouts={workouts} />
+          <Calendar workouts={workouts} signUps={signUps} setSignUps={setSignUps} />
+        </Route>
+        <Route path="/signups" >
+          <Signups signUps={signUps} setSignUps={setSignUps} />
         </Route>
         <Route path='/authentication'>
           <Authentication updateUser={updateUser}/>

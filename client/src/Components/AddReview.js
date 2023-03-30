@@ -50,7 +50,7 @@ function AddReview({reviews, workouts}) {
         return (
             <ul key={reviewObj.id}>
                 <li>User: {reviewObj.user}</li>
-                <li>Workout: {reviewObj.workout.name}</li>
+                <li>Workout: {reviewObj.workout.name} with {reviewObj.workout.trainer.name}</li>
                 <li>Rating: {reviewObj.rating}</li>
                 <li>Review: {reviewObj.text}</li>
                 <br></br>
