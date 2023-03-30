@@ -56,7 +56,7 @@ with app.app_context():
     db.session.commit()
 
     signups = []
-    s1 = Signup(user_id=1, workout_id=1, trainer_id=1)
+    s1 = Signup(user_id=1, workout_id=1)
     signups.append(s1)
     db.session.add_all(signups)
     db.session.commit()

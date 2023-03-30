@@ -18,6 +18,9 @@ class Signups(Resource):
             200
         )
         return response
+api.add_resource(Signups, '/signup')
+
+class AddUser(Resource):
     def post(self):
         form_json = request.get_json()
         new_user = User(name=form_json['name'], email=form_json['email'])
@@ -29,8 +32,7 @@ class Signups(Resource):
             new_user.to_dict(),
             201
         )
-        return response
-api.add_resource(Signups, '/signup')
+api.add_resource(AddUser, '/adduser')
 
 class Login(Resource):
     def post(self):
