@@ -41,6 +41,7 @@ console.log(workouts)
     })
   }, [])
 
+  console.log(reviews)
 
   const updateUser = (user) => setUser(user)
   if(!user) return (
@@ -54,7 +55,7 @@ console.log(workouts)
   return (
     <div className="App">
       <div className="container">
-      <NavBar />
+      <NavBar updateUser={updateUser}/>
       <Switch>
         <Route exact path='/'>
           <Home />

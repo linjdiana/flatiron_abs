@@ -6,11 +6,18 @@ from flask_bcrypt import Bcrypt
 from werkzeug.exceptions import NotFound, Unauthorized
 
 from config import db, app, Api
-from models import User, Trainer, Workout, Review
+from models import User, Trainer, Workout, Review, Signup
 
 api = Api(app)
 
-class Signup(Resource):
+class Signups(Resource):
+    def get(self):
+        signup_list = [s.to_dict() for s in Signup.query.all()]
+        response = make_response(
+            signup_list,
+            200
+        )
+        return response
     def post(self):
         form_json = request.get_json()
         new_user = User(name=form_json['name'], email=form_json['email'])
@@ -23,7 +30,7 @@ class Signup(Resource):
             201
         )
         return response
-api.add_resource(Signup, '/signup')
+api.add_resource(Signups, '/signup')
 
 class Login(Resource):
     def post(self):

@@ -11,6 +11,7 @@ function AddReview({reviews, workouts}) {
         const formSchema = yup.object().shape({
         text: yup.string().required("Please let us know what you thought!")
     })
+    console.log(reviews)
 
     const formik = useFormik({
         initialValues: {
@@ -47,7 +48,8 @@ function AddReview({reviews, workouts}) {
     })
 
     const renderReviews = reviews.map((reviewObj) => {
-            console.log(reviewObj.workout)
+            console.log(reviewObj)
+            console.log(reviewObj.workouts)
         return (
             <ul key={reviewObj.id}>
                 <li>User: {reviewObj.user}</li>
