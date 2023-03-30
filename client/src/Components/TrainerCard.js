@@ -16,7 +16,7 @@ function TrainerCard({ trainerObj }) {
             <h1><strong>{name}</strong></h1>
             <img src={image} alt="trainer pic" />
             <figcaption>
-                <h3>More Info</h3>
+                <h3>Trainer Bio</h3>
                 <p>{bioText}</p>
                 <button onClick={handleClick}>{buttonText}</button>
             </figcaption>
