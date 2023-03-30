@@ -15,10 +15,11 @@ function Calendar({ workouts }) {
 
     
     useEffect(() => {
-        fetch("http://localhost:3000/signups")
+        fetch("/signup")
         .then(response => response.json())
         .then(signUpData => setSignUps(signUpData)) 
     }, [])
+    
 
 
     const formSchema = yup.object().shape({
@@ -33,6 +34,20 @@ function Calendar({ workouts }) {
         validationSchema: formSchema,
         onSubmit: (values) => {
             console.log(values)
+            fetch("/signup", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(values),
+            }).then((response) => {
+                if(response.ok) {
+                    response.json().then(signup => {
+                        addSignUpClass(signup)
+                        history.push("/signup")
+                    })
+                }
+            })
         }
     })
 
@@ -46,6 +61,15 @@ function Calendar({ workouts }) {
         return <CalendarCard key={workouts.id} workoutObj={workoutObj} signUps={signUps} setSignUps={setSignUps} />
     });
 
+    const renderSignups = signUps.map((signupObj) => {
+        console.log(signupObj.workout.time)
+        return (
+            <ul key={signupObj.id}>
+               <li>Scheduled Workout: {signupObj.workout.time} {signupObj.workout.name} with {signupObj.workout.trainer.name}</li>
+              
+            </ul>
+        )
+    })
     
 
     return (
@@ -63,6 +87,9 @@ function Calendar({ workouts }) {
                 <br></br>
                 <input type="submit" />
             </form>
+            <br></br>
+            <h3>Scheduled Sign Ups</h3>
+            {renderSignups}
         </div>
     )
 }
