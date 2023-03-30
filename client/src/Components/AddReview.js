@@ -4,28 +4,31 @@ import { useState, useEffect } from "react";
 import {useFormik } from "formik";
 import * as yup from "yup";
 
-function AddReview({reviews}) {
+function AddReview({reviews, workouts}) {
     const [submittedReview, setSubmittedReview] = useState([])
     const history = useHistory()
     const addReview = (review) => setSubmittedReview(current => [...current,review])
         const formSchema = yup.object().shape({
         text: yup.string().required("Please let us know what you thought!")
     })
+    console.log(reviews)
 
     const formik = useFormik({
         initialValues: {
-            workout: "Get Yoked",
+            user: "",
+            workout_id: workouts[0]?.id,
             rating: "5/5",
             text: " "
         },
         validationSchema: formSchema,
         onSubmit: (values) => {
-            fetch("http://localhost:3000/reviews", {
+            console.log(values)
+            fetch("/reviews", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify(values, null, 2),
+                body: JSON.stringify(values),
             }).then((response) => {
                 if(response.ok) {
                     response.json().then(review => {
@@ -38,28 +41,38 @@ function AddReview({reviews}) {
         }
     })
 
-    const renderReviews = reviews.map((reviewObj) => {
+    const workoutOptions = workouts.map((workoutObj) => {
         return (
-            <ul key={reviews.id}>
+            <option value={workoutObj.id} key={workoutObj.id}>{workoutObj.name} with {workoutObj.trainer.name}</option>
+        )
+    })
+
+    const renderReviews = reviews.map((reviewObj) => {
+            console.log(reviewObj)
+            console.log(reviewObj.workouts)
+        return (
+            <ul key={reviewObj.id}>
                 <li>User: {reviewObj.user}</li>
-                <li>Workout: {reviewObj.workout}</li>
+                <li>Workout: {reviewObj.workout.name}</li>
                 <li>Rating: {reviewObj.rating}</li>
                 <li>Review: {reviewObj.text}</li>
                 <br></br>
             </ul>
         )
     })
+    console.log(renderReviews)
 
     return (
         <div>
              <br></br> <br></br>
             <form onSubmit={formik.handleSubmit}>
+                <label>User: </label>
+                <input type='text' name='user' value={formik.values.user} onChange={formik.handleChange} />
+                <br></br>
                 <label>
                     Workout:
-                    <select name="workout" value={formik.values.workout} onChange={formik.handleChange} >
-                        <option value="getyoked">Get Yoked</option>
-                        <option value="running">Running, but like a lot</option>
-                        <option value="spikeball">Spikeball/no mercy</option>
+                    <select name="workout_id" value={formik.values.workout_id} onChange={formik.handleChange} >
+                        {workoutOptions}
                     </select>
                 </label>
                 <br></br>

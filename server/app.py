@@ -5,12 +5,19 @@ from flask_cors import CORS
 from flask_bcrypt import Bcrypt
 from werkzeug.exceptions import NotFound, Unauthorized
 
-from config import db, app, api
-from models import User, Trainer, Workout, Review
+from config import db, app, Api
+from models import User, Trainer, Workout, Review, Signup
 
 api = Api(app)
 
-class Signup(Resource):
+class Signups(Resource):
+    def get(self):
+        signup_list = [s.to_dict() for s in Signup.query.all()]
+        response = make_response(
+            signup_list,
+            200
+        )
+        return response
     def post(self):
         form_json = request.get_json()
         new_user = User(name=form_json['name'], email=form_json['email'])
@@ -23,7 +30,7 @@ class Signup(Resource):
             201
         )
         return response
-api.add_resource(Signup, '/signup')
+api.add_resource(Signups, '/signup')
 
 class Login(Resource):
     def post(self):
@@ -87,6 +94,23 @@ class Workouts(Resource):
             200
         )
         return response
+    
+    # def post(self):
+    #     data=request.get_json()
+    #     new_review = Review(
+    #         user=data['user'],
+    #         workout=data['workout'],
+    #         rating=data['rating'],
+    #         text=data['text']
+    #     )
+    #     db.session.add(new_review)
+    #     db.session.commit()
+
+    #     response = make_response(
+    #         new_review.to_dict(),
+    #         201
+    #     )
+    #     return response
 api.add_resource(Workouts, '/workouts')
 
 class Reviews(Resource):
@@ -95,6 +119,23 @@ class Reviews(Resource):
         response = make_response(
             review_list,
             200
+        )
+        return response
+    
+    def post(self):
+        data=request.get_json()
+        new_review = Review(
+            user=data['user'],
+            rating=data['rating'],
+            workout_id=data['workout_id'],
+            text=data['text']
+        )
+        db.session.add(new_review)
+        db.session.commit()
+
+        response = make_response(
+            new_review.to_dict(),
+            201
         )
         return response
 api.add_resource(Reviews, '/reviews')
