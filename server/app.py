@@ -32,6 +32,7 @@ class AddUser(Resource):
             new_user.to_dict(),
             201
         )
+        return response
 api.add_resource(AddUser, '/adduser')
 
 class Login(Resource):
