@@ -33,7 +33,20 @@ class Signups(Resource):
             201
         )
         return response
+    
 api.add_resource(Signups, '/signup')
+
+class SignupById(Resource):
+    def delete(self, id):
+        sign_up = Signup.query.filter_by(id=id).first()
+        if not sign_up:
+            return make_response({
+                "errors": "Sign Up not found"
+            }, 404)
+        db.session.delete(sign_up)
+        db.session.commit()
+        return make_response('deleted', 200)
+api.add_resource(SignupById, '/signup/<int:id>')
 
 class AddUser(Resource):
     def post(self):
@@ -113,22 +126,6 @@ class Workouts(Resource):
         )
         return response
     
-    # def post(self):
-    #     data=request.get_json()
-    #     new_review = Review(
-    #         user=data['user'],
-    #         workout=data['workout'],
-    #         rating=data['rating'],
-    #         text=data['text']
-    #     )
-    #     db.session.add(new_review)
-    #     db.session.commit()
-
-    #     response = make_response(
-    #         new_review.to_dict(),
-    #         201
-    #     )
-    #     return response
 api.add_resource(Workouts, '/workouts')
 
 class Reviews(Resource):

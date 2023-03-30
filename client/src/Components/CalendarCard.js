@@ -23,7 +23,7 @@ function CalendarCard({ workoutObj, signUps, setSignUps }) {
             <h4>{time}</h4>
             <p>{trainer.name}</p>
             <button onClick={handleClick}>{buttonText}</button>
-            <p>{descriptionText}</p>
+            {descriptionText}
             {/* <button onClick={handleSignUp}>Sign Up for {name} with {trainer.name}</button> */}
             <br></br>
             <br></br>

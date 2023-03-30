@@ -9,7 +9,7 @@ import NotFound from './Components/NotFound';
 import Calendar from './Components/Calendar';
 import AddReview from './Components/AddReview';
 import { useState, useEffect } from 'react';
-import Signups from './Components/Signups';
+
 
 function App() {
   const [trainers, setTrainers ] = useState([]);
@@ -43,7 +43,7 @@ function App() {
       setWorkouts(workoutData)
     })
   }, [])
-console.log(workouts)
+// console.log(workouts)
 
   useEffect(() => {
     fetch("/reviews")
@@ -53,7 +53,7 @@ console.log(workouts)
     })
   }, [])
 
-  console.log(reviews)
+  // console.log(reviews)
 
   const updateUser = (user) => setUser(user)
   if(!user) return (
@@ -77,9 +77,6 @@ console.log(workouts)
         </Route>
         <Route path="/workouts" >
           <Calendar workouts={workouts} />
-        </Route>
-        <Route path="/signups" >
-          <Signups />
         </Route>
         <Route path='/authentication'>
           <Authentication updateUser={updateUser}/>

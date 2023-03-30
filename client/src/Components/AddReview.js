@@ -35,6 +35,7 @@ function AddReview({reviews, workouts}) {
                         addReview(review)
                         console.log(review)
                         history.push("/reviews")
+                        
                     })
                 }
             })
