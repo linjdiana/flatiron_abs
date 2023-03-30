@@ -1,6 +1,5 @@
 import './App.css';
 import './index.css';
-import {createGlobalStyle} from 'styled-components';
 import {Switch, Route} from "react-router-dom";
 import TrainerContainer from './Components/TrainerContainer';
 import Authentication from './Components/Authentication';
@@ -54,7 +53,6 @@ function App() {
   const updateUser = (user) => setUser(user)
   if(!user) return (
     <>
-      <GlobalStyle />
       <NavBar/>
       <Authentication updateUser={updateUser}/>
     </>
@@ -93,10 +91,3 @@ function App() {
 }
 
 export default App;
-
-const GlobalStyle = createGlobalStyle`
-    body{
-      background-color: yellow; 
-      color:black;
-    }
-    `

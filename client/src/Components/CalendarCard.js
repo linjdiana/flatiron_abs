@@ -42,7 +42,7 @@ function CalendarCard({ workoutObj, signUps, setSignUps }) {
     return (
         <span class="calendarcard">
             <h2>{name}</h2>
-            <h4>{time}</h4>
+            {/* <h4>{time}</h4> */}
             <p>{trainer.name}</p>
             <button className="button-16" onClick={handleClick}>{buttonText}</button>
             <p>{descriptionText}</p>

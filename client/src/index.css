@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Text&display=swap');
+
 body {
   background-image: url("https://hips.hearstapps.com/hmg-prod/images/tasman-glacier-lake-royalty-free-image-1623252368.jpg?crop=1xw:1xh;center,top&resize=980:*");
   backdrop-filter: blur(6px) opacity(0.7);
@@ -87,9 +89,9 @@ code {
   padding: 5px;
   border: 1px solid rgba(255, 255, 255, .25);
   border-radius: 20px;
-  background-color: rgba(255, 255, 255, 0.45);
+  background-color: rgba(255, 252, 252, 0.45);
   box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.25);
-  backdrop-filter: blur(15px);
+  /* backdrop-filter: blur(15px); */
 }
 
 .trainercontainer {
@@ -201,6 +203,7 @@ code {
 }
 
 .reviewscontainer {
+  margin-top: 50px;
   height: 300px;
   display: flex;
   align-items: center;
@@ -215,9 +218,9 @@ code {
 
 .reviewcard {
   overflow: hidden;
-  padding: 2rem; 
+  padding: 1rem; 
   margin: 1rem;
-  width: 23rem;
+  width: 20rem;
   height: auto; 
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
   background: white;
@@ -238,7 +241,7 @@ code {
 
 .reviewcard p {
   margin: 0;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
 }
 
 .reviewcard .author {
@@ -246,10 +249,10 @@ code {
   color: black;
   align-self: flex-end;
 }
-
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Text&display=swap');
 .reviewform {
-  background-image: url("https://img2.10bestmedia.com/Images/Photos/380636/GettyImages-611102194_54_990x660.jpg") ;
-  opacity: 0.8;
+  background-image: url("https://img2.10bestmedia.com/Images/Photos/380636/GettyImages-611102194_54_990x660.jpg");
+  opacity: 0.9;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -258,8 +261,41 @@ code {
   padding: 1.5rem;
   box-shadow: 0 -0.5rem 1rem rgba(0 0 0 / 0.15);
   border-radius: 20px;
+  font-family: 'Crimson Text', serif;
+  font-weight: 590;
+  font-size: 20px;
 }
 
 .reviewform label {
   width: 300px;
+}
+
+.loginform {
+  opacity: 0.9;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  padding: 1.5rem;
+  box-shadow: 0 -0.5rem 1rem rgba(0 0 0 / 0.15);
+  border-radius: 20px;
+  font-family: 'Crimson Text', serif;
+}
+
+.calendarform {
+  background-image: url("https://img2.10bestmedia.com/Images/Photos/380636/GettyImages-611102194_54_990x660.jpg");
+  opacity: 0.9;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  padding: 1.5rem;
+  box-shadow: 0 -0.5rem 1rem rgba(0 0 0 / 0.15);
+  border-radius: 20px;
+  font-family: 'Crimson Text', serif;
+  font-weight: 585;
+  font-size: 20px;
+  margin-top: 25px;
 }

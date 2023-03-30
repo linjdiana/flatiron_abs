@@ -48,7 +48,7 @@ function Authentication({updateUser}) {
   })
 
     return (
-        <> 
+        <div class="loginform"> 
         <h2 style={{color:'red'}}> {formik.errors.name}</h2>
         {error&& <h2 style={{color:'red'}}> {error}</h2>}
         <h2>Please Log in or Sign up!</h2>
@@ -72,9 +72,9 @@ function Authentication({updateUser}) {
            
            </>
         )}
-        <input type='submit' value={signUp?'Sign Up!':'Log In!'} />
+        <input type='submit' value={signUp?'Sign Up':'Log In'} />
       </Form>
-        </>
+        </div>
     )
 }
 
@@ -95,5 +95,6 @@ input[type=submit]{
   font-size:30px;
   margin-top:10px;
   margin-bottom:10px;
+  font-family: 'Crimson Text', serif;
 }
 `
