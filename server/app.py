@@ -1,16 +1,26 @@
 from flask import Flask, request, make_response, jsonify, session, abort
 from flask_migrate import Migrate
-from flask_restful import Resource
+from flask_restful import Api, Resource
 from flask_cors import CORS
 from flask_bcrypt import Bcrypt
 from werkzeug.exceptions import NotFound, Unauthorized
 
 from config import db, app, Api
-from models import User, Trainer, Workout, Review
+from models import User, Trainer, Workout, Review, Signup
 
 api = Api(app)
 
-class Signup(Resource):
+class Signups(Resource):
+    def get(self):
+        signup_list = [s.to_dict() for s in Signup.query.all()]
+        response = make_response(
+            signup_list,
+            200
+        )
+        return response
+api.add_resource(Signups, '/signup')
+
+class AddUser(Resource):
     def post(self):
         form_json = request.get_json()
         new_user = User(name=form_json['name'], email=form_json['email'])
@@ -22,8 +32,7 @@ class Signup(Resource):
             new_user.to_dict(),
             201
         )
-        return response
-api.add_resource(Signup, '/signup')
+api.add_resource(AddUser, '/adduser')
 
 class Login(Resource):
     def post(self):
@@ -119,8 +128,8 @@ class Reviews(Resource):
         data=request.get_json()
         new_review = Review(
             user=data['user'],
-            workout_id=data['workout_id'],
             rating=data['rating'],
+            workout_id=data['workout_id'],
             text=data['text']
         )
         db.session.add(new_review)

@@ -1,6 +1,6 @@
 from faker import Faker
 from app import app
-from models import db, Trainer, Workout, Review
+from models import db, Trainer, Workout, Review, Signup
 
 fake = Faker()
 
@@ -53,4 +53,10 @@ with app.app_context():
     r12 = Review(user='Nick', rating='2/5', trainer_id=1, workout_id=1, text="Topher was constantly adjusting the lighting. To be fair, I looked great, but I wish he spent more time telling me how to improve my workout. 2 out of 5.")
     reviews.append(r12)
     db.session.add_all(reviews)
+    db.session.commit()
+
+    signups = []
+    s1 = Signup(user_id=1, workout_id=1)
+    signups.append(s1)
+    db.session.add_all(signups)
     db.session.commit()

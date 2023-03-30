@@ -3,8 +3,10 @@ import { useState } from "react"
 function CalendarCard({ workoutObj, signUps, setSignUps }) {
     const { id, time, trainer, name, description } = workoutObj
     const [showDescription, setShowDescription] = useState(false)
+
     const [isSignedUp, setIsSignedUp] = useState(false)
     // console.log(trainers.name)
+
 
     function handleClick() {
         setShowDescription((currentDescription) => !currentDescription)
