@@ -4,7 +4,7 @@ function Home(){
            <h1>What is Flat & Iron Abs Gym? </h1>
            Flat & Iron Abs is a gym located in the Bay Area created by three software engineers from the Flatiron School.  
            <a
-             href="https://www.youtube.com/watch?v=Ene2VxM3WE8"
+             href="https://www.youtube.com/watch?v=fwQ1PrED9IE"
              target="_blank"
              rel="noreferrer"
            >
