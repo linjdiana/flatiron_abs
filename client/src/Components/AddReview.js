@@ -4,7 +4,7 @@ import { useState } from "react";
 import {useFormik } from "formik";
 import * as yup from "yup";
 
-function AddReview({reviews}) {
+function AddReview({reviews, workouts}) {
     const [submittedReview, setSubmittedReview] = useState([])
     const [name, setName] = useState([])
     const history = useHistory()
@@ -33,7 +33,7 @@ function AddReview({reviews}) {
                         addReview(review)
                         // console.log(review)
                         history.push("/reviews")
-                        
+                        window.location.reload()
                     })
                 }
             })
@@ -54,6 +54,7 @@ function AddReview({reviews}) {
             <ul>
               <strong>{reviewObj.rating}</strong>
             </ul>
+            {/* <ul>{reviewObj.workout}</ul> */}
             <p>{reviewObj.text}</p>
             <br></br>
           </ul>

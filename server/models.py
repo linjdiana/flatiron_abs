@@ -43,7 +43,6 @@ class User(db.Model, SerializerMixin):
 class Review(db.Model, SerializerMixin):
     __tablename__ = 'reviews'
 
-    # serialize_rules = ('-trainer_id', '-workout_id', '-workout.description', '-workout.id', '-workout.name', '-workout.trainer_id')
     serialize_rules = ('-trainer_id', '-workout_id', '-workout.description', '-workout.id', '-workout.trainer_id', '-users')
 
     id = db.Column(db.Integer, primary_key=True)
@@ -51,15 +50,12 @@ class Review(db.Model, SerializerMixin):
     workout_id = db.Column(db.Integer, db.ForeignKey('workouts.id'))
     trainer_id = db.Column(db.Integer, db.ForeignKey('trainers.id'))
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
-    # should rating be an integer?
     rating = db.Column(db.String)
     text = db.Column(db.String)
-
+    
     users = db.relationship('User', back_populates='review')
     workout = db.relationship('Workout', back_populates='review')
-    # workout = db.relationship('Workout', backref='review')
 
-# from app import bcrypt 
 class Trainer(db.Model, SerializerMixin):
     __tablename__ = "trainers"
 

@@ -13,8 +13,6 @@ api = Api(app)
 class Users(Resource):
     def get(self):
         user = User.query.filter_by(id=session['user_id']).first()
-        # user = [u.to_dict() for u in User.query.all()]
-        # user = session['user_id']
         response = make_response(
             user.to_dict(), 200
         )
@@ -149,7 +147,7 @@ class Reviews(Resource):
             user=data['name'],
             rating=data['rating'],
             user_id=session['user_id'],
-            workout_id=data['workout_id'],
+            # workout_id=data['workout_id'],
             text=data['text']
         )
         db.session.add(new_review)

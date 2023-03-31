@@ -52,7 +52,7 @@ function Calendar({ workouts }) {
                 if(response.ok) {
                     response.json().then(signup => {
                         setSignUpClass(current => [...current, signup])
-                        console.log(signup)
+                        window.location.reload()
                     })
                 }
             })
@@ -85,8 +85,6 @@ function Calendar({ workouts }) {
             {renderWorkouts}
             <br></br><br></br>
             <form class="calendarform" onSubmit={formik.handleSubmit}>
-                <label>User: </label>
-                <input type='text' name='user' value={formik.values.user} onChange={formik.handleChange} />
                 <br></br>
                 <label>Which workout would you like to sign up for? </label>
                 <select name="workout_id" value={formik.values.workout_id} onChange={formik.handleChange} >
