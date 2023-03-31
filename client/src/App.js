@@ -29,7 +29,7 @@ function App() {
 
   useEffect(() => {
     fetch("/trainers")
-    .then((response) => response.json())
+    .then((response) => response.json()) 
     .then((trainerData) => {
       setTrainers(trainerData)
     })

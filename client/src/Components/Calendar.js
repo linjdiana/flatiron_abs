@@ -74,7 +74,7 @@ function Calendar({ workouts }) {
         return (
             <ul class="signups" key={signupObj.id}>
                <ul>Scheduled: {signupObj.workout.time} {signupObj.workout.name} with {signupObj.workout.trainer.name}</ul>
-               <button onClick={() => handleDelete(signupObj.id)}>Delete</button>
+               <button class="button-30" onClick={() => handleDelete(signupObj.id)}>Delete</button>
             </ul>
         )
     })
@@ -93,7 +93,7 @@ function Calendar({ workouts }) {
                     {workoutOptions}
                 </select>
                 <br></br>
-                <input type="submit" />
+                <input class="button-30" type="submit" />
             </form>
             <br></br>
             <div class="signups"><h3>Scheduled Sign Ups</h3>{renderSignups}</div>

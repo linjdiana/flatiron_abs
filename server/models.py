@@ -3,7 +3,6 @@ from sqlalchemy_serializer import SerializerMixin
 from sqlalchemy.orm import validates
 from sqlalchemy.ext.hybrid import hybrid_property
 from config import db, bcrypt
-# db = SQLAlchemy()
 
 class User(db.Model, SerializerMixin):
     __tablename__ = 'users'
@@ -11,7 +10,20 @@ class User(db.Model, SerializerMixin):
     name = db.Column(db.String)
     email = db.Column(db.String)
     _password_hash = db.Column(db.String)
-    # admin = db.Column(db.String, default=False)
+
+    @validates('name')
+    def validates_name(self, key, value):
+        if any(char.isdigit() for char in value):
+            raise ValueError('Name must be a string')
+        return
+
+    @validates('email')
+    def validates_name(self, key, value):
+        emails_list = User.query.all()
+        emails = [email.email for email in emails_list]
+        if value in emails:
+            raise ValueError('Email already exists') 
+        return
 
     @hybrid_property 
     def password_hash(self):
@@ -25,11 +37,9 @@ class User(db.Model, SerializerMixin):
     def authenticate(self, password):
         return bcrypt.check_password_hash(self._password_hash, password.encode('utf-8'))
 
-# from app import bcrypt 
 class Trainer(db.Model, SerializerMixin):
     __tablename__ = "trainers"
 
-    # serialize_rules = ('-workouts',) 
     serialize_rules = ('-workout',) 
 
     id = db.Column(db.Integer, primary_key=True)
@@ -52,13 +62,11 @@ class Workout(db.Model, SerializerMixin):
 
     trainer = db.relationship('Trainer', back_populates='workout')
     review = db.relationship('Review', back_populates='workout')
-    # signups = db.relationship('Signup', back_populates='workout')
-    # trainer = db.relationship('Trainer', backref='workout')
+
 
 class Review(db.Model, SerializerMixin):
     __tablename__ = 'reviews'
 
-    # serialize_rules = ('-trainer_id', '-workout_id', '-workout.description', '-workout.id', '-workout.name', '-workout.trainer_id')
     serialize_rules = ('-trainer_id', '-workout_id', '-workout.description', '-workout.id', '-workout.name', '-workout.trainer_id')
 
     id = db.Column(db.Integer, primary_key=True)

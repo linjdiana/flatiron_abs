@@ -20,11 +20,9 @@ function NavBar({updateUser}) {
     return (
       
       <nav className="navigation">
-        {/* <a href="/" className="brand-name"> */}
           <NavLink className="brand-name" exact to='/'>
-          Flat & Iron Abs
+          <strong>Flat & Iron Abs</strong>
           </NavLink>
-        {/* </a> */}
         <button
           className="hamburger"
           onClick={() => {

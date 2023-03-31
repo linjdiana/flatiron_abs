@@ -42,8 +42,7 @@ function AddReview({reviews}) {
     const renderReviews = reviews.map((reviewObj) => {
         return (
           <ul class="reviewcard" key={reviews.id}>
-            <ul class="author">{reviewObj.user}</ul>
-            {/* <ul>Workout: {reviewObj.workout}</ul> */}
+            <ul class="author"><strong>{reviewObj.user}</strong></ul>
             <ul>
               <strong>{reviewObj.rating}</strong>
             </ul>
@@ -90,7 +89,7 @@ function AddReview({reviews}) {
               value={formik.values.text}
               onChange={formik.handleChange}
             />
-            <input type="submit" />
+            <input class="button-30" type="submit" />
           </form>
           <br></br>
           <br></br>

@@ -53,7 +53,7 @@ function Authentication({updateUser}) {
         {error&& <h2 style={{color:'red'}}> {error}</h2>}
         <h2>Please Log in or Sign up!</h2>
         <h2>{signUp?'Have an account?':'Not a member yet?'}</h2>
-        <button onClick={handleClick}>{signUp?'Log In':'Signup'}</button>
+        <button class="button-30" onClick={handleClick}>{signUp?'Log In':'Signup'}</button>
         <Form onSubmit={formik.handleSubmit}>
         <label>
           Username
@@ -72,7 +72,7 @@ function Authentication({updateUser}) {
            
            </>
         )}
-        <input type='submit' value={signUp?'Sign Up':'Log In'} />
+        <input class="button-30" type='submit' value={signUp?'Sign Up':'Log In'} />
       </Form>
         </div>
     )
@@ -85,16 +85,14 @@ display:flex;
 flex-direction:column;
 width: 400px;
 margin:auto;
-font-family:Arial;
 font-size:30px;
 input[type=submit]{
-  background-color:#42ddf5;
-  color: white;
+  rgb(223, 239, 239);
   height:40px;
-  font-family:Arial;
-  font-size:30px;
-  margin-top:10px;
-  margin-bottom:10px;
-  font-family: 'Crimson Text', serif;
+  font-family: 'Edu SA Beginner';
+  font-size:25px;
+  margin-top:5px;
+  margin-bottom:5px;
+  length: 150px;
 }
 `
