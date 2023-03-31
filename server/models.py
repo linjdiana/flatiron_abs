@@ -31,10 +31,10 @@ class Review(db.Model, SerializerMixin):
     __tablename__ = 'reviews'
 
     # serialize_rules = ('-trainer_id', '-workout_id', '-workout.description', '-workout.id', '-workout.name', '-workout.trainer_id')
-    serialize_rules = ('-trainer_id', '-workout_id', '-workout.description', '-workout.id', '-workout.name', '-workout.trainer_id', 'user_id')
+    serialize_rules = ('-trainer_id', '-workout_id', '-workout.description', '-workout.id', '-workout.trainer_id', '-user')
 
     id = db.Column(db.Integer, primary_key=True)
-    # user = db.Column(db.String)
+    user = db.Column(db.String)
     workout_id = db.Column(db.Integer, db.ForeignKey('workouts.id'))
     trainer_id = db.Column(db.Integer, db.ForeignKey('trainers.id'))
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))

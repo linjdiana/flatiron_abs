@@ -141,8 +141,9 @@ class Reviews(Resource):
     def post(self):
         data=request.get_json()
         new_review = Review(
-            user=data['user'],
+            # user=data['user'],
             rating=data['rating'],
+            user_id=session['user_id'],
             workout_id=data['workout_id'],
             text=data['text']
         )

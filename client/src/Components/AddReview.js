@@ -49,7 +49,7 @@ function AddReview({reviews, workouts}) {
 
     const renderReviews = reviews.map((reviewObj) => {
             console.log(reviewObj)
-            console.log(reviewObj.workouts)
+            console.log(reviewObj.workout)
         return (
             <ul key={reviewObj.id}>
                 <li>User: {reviewObj.user}</li>

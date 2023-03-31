@@ -28,7 +28,8 @@ with app.app_context():
     db.session.commit()
 
     reviews = []
-    r1 = Review(user='Bianca', rating='5/5', trainer_id=3, workout_id=3, text="Brett was already an amazing trainer, but her sidekick Kula really kicked my motivation into high gear! 5/5 stars")
+    # r1 = Review(user='Bianca', rating='5/5', trainer_id=3, workout_id=3, text="Brett was already an amazing trainer, but her sidekick Kula really kicked my motivation into high gear! 5/5 stars")
+    r1 = Review(rating='5/5', trainer_id=3, workout_id=3, user_id=2, text="Brett was already an amazing trainer, but her sidekick Kula really kicked my motivation into high gear! 5/5 stars")
     reviews.append(r1)
     # r2 = Review(user='Bianca', rating='5/5', trainer_id=2, workout_id=2, text="Diana Lin mixes her own workout mixes which are fire and really got my heart pumping during this workout. 5/5 stars")
     # reviews.append(r2)
