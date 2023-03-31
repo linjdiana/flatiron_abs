@@ -6,12 +6,13 @@ import * as yup from "yup";
 
 function AddReview({reviews}) {
     const [submittedReview, setSubmittedReview] = useState([])
+    const [name, setName] = useState([])
     const history = useHistory()
     const addReview = (review) => setSubmittedReview(current => [...current,review])
         const formSchema = yup.object().shape({
         text: yup.string().required("Please let us know what you thought!")
     })
-
+    fetch('/user',).then((response) => response.json()).then((data) => setName(data.name))
     const formik = useFormik({
         initialValues: {
             workout: "Get Yoked",
@@ -20,23 +21,30 @@ function AddReview({reviews}) {
         },
         validationSchema: formSchema,
         onSubmit: (values) => {
-            fetch('/reviews', {
+            fetch("/reviews", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify(values, null, 2),
+                body: JSON.stringify({...values, name: name}),
             }).then((response) => {
                 if(response.ok) {
                     response.json().then(review => {
                         addReview(review)
-                        console.log(review)
+                        // console.log(review)
                         history.push("/reviews")
                         
                     })
                 }
             })
         }
+    })
+            console.log(name)
+
+    const workoutOptions = workouts.map((workoutObj) => {
+        return (
+            <option value={workoutObj.id} key={workoutObj.id}>{workoutObj.name} with {workoutObj.trainer.name}</option>
+        )
     })
 
     const renderReviews = reviews.map((reviewObj) => {
