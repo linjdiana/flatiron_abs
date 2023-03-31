@@ -2,6 +2,25 @@
   text-align: center;
 }
 
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Text&display=swap');
+
+body {
+  background-image: url("https://hips.hearstapps.com/hmg-prod/images/tasman-glacier-lake-royalty-free-image-1623252368.jpg?crop=1xw:1xh;center,top&resize=980:*");
+  backdrop-filter: blur(6px) opacity(0.7);
+  background-repeat: no-repeat;
+  background-size: 150%;
+  margin: 0;
+  font-family: 'Crimson Text', serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  
+}
+
+code {
+  font-family: 'Crimson Text', serif;
+}
+
+
 .navigation {
   position: relative;
   display: flex;
@@ -105,14 +124,6 @@
   padding: 0;
 }
 
-body {
-  font-family: "Karla", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
-    "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
 .container {
   max-width: 90%;
   margin-right: auto;
@@ -124,3 +135,271 @@ article h1 {
   margin: 1rem 0;
 }
 
+
+.button-16 {
+  background-color: #f8f9fa;
+  border: 1px solid #f8f9fa;
+  border-radius: 4px;
+  color: #3c4043;
+  cursor: pointer;
+  /* font-family: arial,sans-serif; */
+  font-size: 14px;
+  height: 36px;
+  line-height: 27px;
+  min-width: 54px;
+  padding: 0 16px;
+  text-align: center;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  white-space: pre;
+}
+
+.button-16:hover {
+  border-color: #dadce0;
+  box-shadow: rgba(0, 0, 0, .1) 0 1px 1px;
+  color: #202124;
+}
+
+.button-16:focus {
+  border-color: #4285f4;
+  outline: none;
+}
+
+.calendarcard {
+  margin-top: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: 0 auto;
+  width: 250px;
+  height: 250px;
+  padding: 5px;
+  border: 1px solid rgba(255, 255, 255, .25);
+  border-radius: 20px;
+  background-color: rgba(255, 252, 252, 0.45);
+  box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.25);
+}
+
+.trainercontainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  height: 75vh;
+}
+.trainercontainer html {
+	font-size: 16px;
+	font-smooth: auto;
+	font-weight: 300;
+	line-height: 1.5;
+	color: #444;
+}
+
+
+.trainercontainer body {
+	position: relative;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	height: 100vh;
+}
+
+.trainercard {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 230px; 
+  min-width: 259px; 
+  height: 400px; 
+  border-radius: 10px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  transition: all 0.3s cubic-bezier(.25, .8, .25, 1);
+  overflow: hidden;
+  font-family: 'Crimson Text', serif;
+}
+
+.trainercard:hover {
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+}
+
+.trainercard:hover h1 {
+  opacity: 0;
+  transform: scale(0.7);
+}
+
+.trainercard:hover img {
+  transform: scale(1.25);
+  opacity: 0.5; 
+}
+
+.trainercard:hover figcaption {
+  bottom: 0;
+}
+
+.trainercard h1 {
+  position: absolute;
+  top: 12px; 
+  left: 14px; 
+  margin: 0;
+  padding: 0;
+  color: black;
+  font-size: 38px; 
+  font-weight: 100;
+  line-height: 1;
+  opacity: 1;
+  transform: scale(1);
+  transition: 0.25s ease;
+  z-index: 999;
+}
+
+.trainercard img {
+  width: 259px; 
+  height: 280px; 
+  object-fit: cover;
+  transition: 0.25s;
+  opacity: 0.9;
+}
+
+.trainercard figcaption {
+  position: absolute;
+  bottom: 0;
+  padding: 14px;
+  background-color: white;
+  color: black;
+  width: 100%;
+  text-align: center;
+}
+
+.trainercard p {
+  font-size: 12.5px; 
+  line-height: 1.25;
+}
+
+.trainercard button {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 7px 0 0; 
+  padding: 7px 21px;
+}
+
+.reviewscontainer {
+  height: 250px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 0 2rem;
+  box-sizing: border-box;
+  flex-direction: row;
+  overflow-y: scroll;
+  justify-content: center; 
+}
+
+.reviewcard {
+  overflow: hidden;
+  padding: 0.75rem; 
+  margin: 0.50rem;
+  width: 20rem;
+  height: auto; 
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  background: white;
+  opacity: 0.82; 
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  flex-direction: column;
+  border-radius: 5px;
+}
+
+
+.reviewcard h2 {
+  font-size: 2rem;
+  margin: 0;
+  margin-bottom: 1rem;
+}
+
+.reviewcard p {
+  margin: 0;
+  margin-bottom: 1rem;
+}
+
+.reviewcard .author {
+  font-style: italic;
+  color: black;
+  align-self: flex-end;
+}
+
+.reviewform {
+  margin-top: 22px;
+  background-image: url("https://img2.10bestmedia.com/Images/Photos/380636/GettyImages-611102194_54_990x660.jpg");
+  opacity: 0.9;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  padding: 1.5rem;
+  box-shadow: 0 -0.5rem 1rem rgba(0 0 0 / 0.15);
+  border-radius: 20px;
+  font-family: 'Crimson Text', serif;
+  font-weight: 590;
+  font-size: 20px;
+}
+
+.reviewform label {
+  width: 300px;
+}
+
+.loginform {
+  opacity: 0.9;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  padding: 1.5rem;
+  box-shadow: 0 -0.5rem 1rem rgba(0 0 0 / 0.15);
+  border-radius: 20px;
+  font-family: 'Crimson Text', serif;
+}
+
+.calendarform {
+  background-image: url("https://img2.10bestmedia.com/Images/Photos/380636/GettyImages-611102194_54_990x660.jpg");
+  opacity: 0.9;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  padding: 1.5rem;
+  box-shadow: 0 -0.5rem 1rem rgba(0 0 0 / 0.15);
+  border-radius: 20px;
+  /* font-family: 'Crimson Text', serif; */
+  font-weight: 585;
+  font-size: 20px;
+  margin-top: 15px;
+}
+
+.signups {
+  overflow: hidden;
+  overflow-y: scroll;
+  padding: 0.5rem; 
+  margin: 0.5rem;
+  width: 30rem;
+  height: 200px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  background: white;
+  opacity: 0.82; 
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  flex-direction: column;
+  border-radius: 5px;
+}

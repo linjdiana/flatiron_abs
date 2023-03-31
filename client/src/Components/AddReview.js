@@ -55,7 +55,7 @@ function AddReview({reviews}) {
       
       return (
         <div>
-          <br></br> <br></br>
+          {/* <br></br> <br></br> */}
           <form class="reviewform" onSubmit={formik.handleSubmit}>
             <label class="workout">
               Workout: <br />
@@ -69,7 +69,7 @@ function AddReview({reviews}) {
                 <option value="spikeball">Spikeball/no mercy</option>
               </select>
             </label>
-            <br></br>
+            {/* <br></br> */}
             <label>
               <select
                 name="rating"
@@ -83,7 +83,6 @@ function AddReview({reviews}) {
                 <option value="1/5">1/5</option>
               </select>
             </label>
-            <br></br>
             <label>Review: </label>
             <textarea
               type="text"

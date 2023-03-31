@@ -1,5 +1,4 @@
 import { useState } from "react";
-import '../index.css';
 
 function TrainerCard({ trainerObj }) {
     const { name, image, bio } = trainerObj

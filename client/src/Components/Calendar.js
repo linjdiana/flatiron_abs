@@ -72,9 +72,9 @@ function Calendar({ workouts }) {
     const renderSignups = signUps.map((signupObj) => {
         // console.log(signupObj.workout.time)
         return (
-            <ul key={signupObj.id}>
-               <li>Scheduled Workout: {signupObj.workout.time} {signupObj.workout.name} with {signupObj.workout.trainer.name}</li>
-               <button onClick={() => handleDelete(signupObj.id)}>Delete Sign Up</button>
+            <ul class="signups" key={signupObj.id}>
+               <ul>Scheduled: {signupObj.workout.time} {signupObj.workout.name} with {signupObj.workout.trainer.name}</ul>
+               <button onClick={() => handleDelete(signupObj.id)}>Delete</button>
             </ul>
         )
     })
@@ -96,8 +96,7 @@ function Calendar({ workouts }) {
                 <input type="submit" />
             </form>
             <br></br>
-            {/* <h3>Scheduled Sign Ups</h3>
-            {renderSignups} */}
+            <div class="signups"><h3>Scheduled Sign Ups</h3>{renderSignups}</div>
         </div>
     )
 }

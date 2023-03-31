@@ -1,5 +1,4 @@
 import './App.css';
-import './index.css';
 import {Switch, Route} from "react-router-dom";
 import TrainerContainer from './Components/TrainerContainer';
 import Authentication from './Components/Authentication';
