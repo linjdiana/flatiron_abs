@@ -1,5 +1,4 @@
-import Calendar from './Calendar'
-import TrainerContainer from './TrainerContainer'
+
 import { useState } from 'react';
 import { NavLink, useHistory } from "react-router-dom";
 
@@ -21,11 +20,11 @@ function NavBar({updateUser}) {
     return (
       
       <nav className="navigation">
-        <a href="/" className="brand-name">
-          <NavLink exact to='/'>
+        {/* <a href="/" className="brand-name"> */}
+          <NavLink className="brand-name" exact to='/'>
           Flat & Iron Abs
           </NavLink>
-        </a>
+        {/* </a> */}
         <button
           className="hamburger"
           onClick={() => {
@@ -60,9 +59,6 @@ function NavBar({updateUser}) {
             </li>
             <li>
               <NavLink exact to="/reviews">Reviews</NavLink>
-            </li>
-            <li>
-              <NavLink exact to="/signups">Sign Ups</NavLink>
             </li>
             <li>
                 <NavLink exact to="/authentication">Log In/Signup</NavLink>

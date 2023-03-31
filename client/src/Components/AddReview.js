@@ -32,6 +32,7 @@ function AddReview({reviews}) {
                         addReview(review)
                         console.log(review)
                         history.push("/reviews")
+                        
                     })
                 }
             })

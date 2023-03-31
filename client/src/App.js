@@ -9,20 +9,24 @@ import NotFound from './Components/NotFound';
 import Calendar from './Components/Calendar';
 import AddReview from './Components/AddReview';
 import { useState, useEffect } from 'react';
-import Signups from './Components/Signups';
+
 
 function App() {
   const [trainers, setTrainers ] = useState([]);
   const [user, setUser] = useState(null);
   const [ workouts, setWorkouts ] = useState([]);
   const [ reviews, setReviews ] = useState([])
-  // const [ signUps, setSignUps ] = useState([])
-    
-  // useEffect(() => {
-  //     fetch("http://localhost:3000/signups")
-  //     .then(response => response.json())
-  //     .then(signUpData => setSignUps(signUpData)) 
-  // }, [])
+  
+  useEffect(() => {
+    fetch("/authorized")
+    .then(response => {
+      if(response.ok) {
+        response.json().then(user =>setUser(user))
+      } else {
+        setUser(null)
+      }
+    })
+  }, [])
 
   useEffect(() => {
     fetch("/trainers")
@@ -48,8 +52,6 @@ function App() {
     })
   }, [])
 
-  console.log(reviews)
-
 
   const updateUser = (user) => setUser(user)
   if(!user) return (
@@ -72,9 +74,6 @@ function App() {
         </Route>
         <Route path="/workouts" >
           <Calendar workouts={workouts} />
-        </Route>
-        <Route path="/signups" >
-          <Signups />
         </Route>
         <Route path='/authentication'>
           <Authentication updateUser={updateUser}/>
