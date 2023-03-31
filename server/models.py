@@ -12,6 +12,7 @@ class User(db.Model, SerializerMixin):
     email = db.Column(db.String)
     _password_hash = db.Column(db.String)
     # admin = db.Column(db.String, default=False)
+    review = db.relationship('Review', back_populates='user')
 
     @hybrid_property 
     def password_hash(self):
@@ -24,6 +25,26 @@ class User(db.Model, SerializerMixin):
     
     def authenticate(self, password):
         return bcrypt.check_password_hash(self._password_hash, password.encode('utf-8'))
+
+
+class Review(db.Model, SerializerMixin):
+    __tablename__ = 'reviews'
+
+    # serialize_rules = ('-trainer_id', '-workout_id', '-workout.description', '-workout.id', '-workout.name', '-workout.trainer_id')
+    serialize_rules = ('-trainer_id', '-workout_id', '-workout.description', '-workout.id', '-workout.name', '-workout.trainer_id', 'user_id')
+
+    id = db.Column(db.Integer, primary_key=True)
+    # user = db.Column(db.String)
+    workout_id = db.Column(db.Integer, db.ForeignKey('workouts.id'))
+    trainer_id = db.Column(db.Integer, db.ForeignKey('trainers.id'))
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    # should rating be an integer?
+    rating = db.Column(db.String)
+    text = db.Column(db.String)
+
+    user = db.relationship('User', back_populates='review')
+    workout = db.relationship('Workout', back_populates='review')
+    # workout = db.relationship('Workout', backref='review')
 
 # from app import bcrypt 
 class Trainer(db.Model, SerializerMixin):
@@ -55,22 +76,6 @@ class Workout(db.Model, SerializerMixin):
     # signups = db.relationship('Signup', back_populates='workout')
     # trainer = db.relationship('Trainer', backref='workout')
 
-class Review(db.Model, SerializerMixin):
-    __tablename__ = 'reviews'
-
-    # serialize_rules = ('-trainer_id', '-workout_id', '-workout.description', '-workout.id', '-workout.name', '-workout.trainer_id')
-    serialize_rules = ('-trainer_id', '-workout_id', '-workout.description', '-workout.id', '-workout.name', '-workout.trainer_id')
-
-    id = db.Column(db.Integer, primary_key=True)
-    user = db.Column(db.String)
-    workout_id = db.Column(db.Integer, db.ForeignKey('workouts.id'))
-    trainer_id = db.Column(db.Integer, db.ForeignKey('trainers.id'))
-    # should rating be an integer?
-    rating = db.Column(db.String)
-    text = db.Column(db.String)
-
-    workout = db.relationship('Workout', back_populates='review')
-    # workout = db.relationship('Workout', backref='review')
 
 class Signup(db.Model, SerializerMixin):
     __tablename__  = 'signups'

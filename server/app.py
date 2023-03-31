@@ -18,6 +18,19 @@ class Signups(Resource):
             200
         )
         return response
+    def post(self):
+        data=request.get_json()
+        new_sign_up = Signup(
+            workout_id=data['workout_id']
+        )
+        db.session.add(new_sign_up)
+        db.session.commit()
+
+        response = make_response(
+            new_sign_up.to_dict(),
+            201
+        )
+        return response
 api.add_resource(Signups, '/signup')
 
 class AddUser(Resource):
