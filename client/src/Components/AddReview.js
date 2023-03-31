@@ -6,12 +6,13 @@ import * as yup from "yup";
 
 function AddReview({reviews, workouts}) {
     const [submittedReview, setSubmittedReview] = useState([])
+    const [name, setName] = useState([])
     const history = useHistory()
     const addReview = (review) => setSubmittedReview(current => [...current,review])
         const formSchema = yup.object().shape({
         text: yup.string().required("Please let us know what you thought!")
     })
-    console.log(reviews)
+    // console.log(reviews)
 
     const formik = useFormik({
         initialValues: {
@@ -22,24 +23,26 @@ function AddReview({reviews, workouts}) {
         },
         validationSchema: formSchema,
         onSubmit: (values) => {
-            console.log(values)
+            fetch('/user',).then((response) => response.json()).then((data) => setName(data.name))
             fetch("/reviews", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify(values),
+                body: JSON.stringify({...values, name: name}),
             }).then((response) => {
                 if(response.ok) {
                     response.json().then(review => {
                         addReview(review)
-                        console.log(review)
+                        // console.log(review)
                         history.push("/reviews")
+                        // window.location.reload()
                     })
                 }
             })
         }
     })
+            console.log(name)
 
     const workoutOptions = workouts.map((workoutObj) => {
         return (
@@ -49,7 +52,7 @@ function AddReview({reviews, workouts}) {
 
     const renderReviews = reviews.map((reviewObj) => {
             console.log(reviewObj)
-            console.log(reviewObj.workout)
+            // console.log(reviewObj.workout)
         return (
             <ul key={reviewObj.id}>
                 <li>User: {reviewObj.user}</li>
@@ -60,14 +63,15 @@ function AddReview({reviews, workouts}) {
             </ul>
         )
     })
-    console.log(renderReviews)
+    // console.log(renderReviews)
 
     return (
         <div>
-             <br></br> <br></br>
+             <br></br> 
+             {/* <br></br> */}
             <form onSubmit={formik.handleSubmit}>
-                <label>User: </label>
-                <input type='text' name='user' value={formik.values.user} onChange={formik.handleChange} />
+                {/* <label>User: </label>
+                <input type='text' name='user' value={formik.values.user} onChange={formik.handleChange} /> */}
                 <br></br>
                 <label>
                     Workout:

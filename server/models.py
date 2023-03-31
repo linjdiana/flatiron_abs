@@ -12,7 +12,21 @@ class User(db.Model, SerializerMixin):
     email = db.Column(db.String)
     _password_hash = db.Column(db.String)
     # admin = db.Column(db.String, default=False)
-    review = db.relationship('Review', back_populates='user')
+    review = db.relationship('Review', back_populates='users')
+
+    @validates('name')
+    def validates_name(self, key, value):
+        if any(char.isdigit() for char in value):
+            raise ValueError('Name must be a string')
+        return
+
+    @validates('email')
+    def validates_name(self, key, value):
+        emails_list = User.query.all()
+        emails = [email.email for email in emails_list]
+        if value in emails:
+            raise ValueError('Email already exists') 
+        return
 
     @hybrid_property 
     def password_hash(self):
@@ -31,7 +45,7 @@ class Review(db.Model, SerializerMixin):
     __tablename__ = 'reviews'
 
     # serialize_rules = ('-trainer_id', '-workout_id', '-workout.description', '-workout.id', '-workout.name', '-workout.trainer_id')
-    serialize_rules = ('-trainer_id', '-workout_id', '-workout.description', '-workout.id', '-workout.trainer_id', '-user')
+    serialize_rules = ('-trainer_id', '-workout_id', '-workout.description', '-workout.id', '-workout.trainer_id', '-users')
 
     id = db.Column(db.Integer, primary_key=True)
     user = db.Column(db.String)
@@ -42,7 +56,7 @@ class Review(db.Model, SerializerMixin):
     rating = db.Column(db.String)
     text = db.Column(db.String)
 
-    user = db.relationship('User', back_populates='review')
+    users = db.relationship('User', back_populates='review')
     workout = db.relationship('Workout', back_populates='review')
     # workout = db.relationship('Workout', backref='review')
 
