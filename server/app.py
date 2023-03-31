@@ -30,6 +30,7 @@ class Signups(Resource):
     def post(self):
         data=request.get_json()
         new_sign_up = Signup(
+            user_id=session['user_id'],
             workout_id=data['workout_id']
         )
         db.session.add(new_sign_up)
